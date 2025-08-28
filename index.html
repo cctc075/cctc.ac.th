@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ | Charoenmit Commercial Technology College</title>
+  <meta name="description" content="วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Mali:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.png" />
+  <style>
+    /* === Design Tokens === */
+
+    :root{
+      --brand: #7058ea;        /* น้ำเงิน */
+      --brand-2: #FFCE00;      /* เหลือง */
+      --ink: #000;
+      --muted: #5b6476;
+      --bg: url("photo/111.jpg") no-repeat center center fixed;
+      --card: #ffffff;
+      --ring: rgba(0,59,154,.15);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --grad: linear-gradient(135deg, var(--brand) 0%, #0066ff 40%, #00b3ff 100%);
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --ink: #e9edf7;
+        --muted: #a8b0c2;
+        --bg: url("photo/พื้นหลังดำ.jpg") no-repeat center center fixed;
+        --card: #0f172ab3;
+        --ring: rgba(255,255,255,.12);
+        --shadow: 0 10px 30px rgba(0,0,0,.35);
+      }
+    }
+
+    /* === Base === */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Sarabun', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1200px, 92%);margin-inline:auto}
+    .grid{display:grid;gap:24px}
+
+    /* === Nav === */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(255,255,255,.6);
+      border-bottom:1px solid var(--ring);
+    }
+    @media (prefers-color-scheme: dark){
+      .nav{background:rgba(11,18,33,.6)}
+    }
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  object-fit: cover;   /* ทำให้ภาพไม่บิด */
+  box-shadow: var(--shadow);
+}
+
+    .brand-title{display:flex;flex-direction:column;line-height:1}
+    .brand-title span:first-child{font-size:14px;color:var(--muted)}
+    .brand-title span:last-child{font-size:16px}
+
+    .menu{display:flex;gap:14px;align-items:center}
+    .menu a{padding:10px 14px;border-radius:12px;font-weight:600;color:var(--ink)}
+    .menu a:hover{background:var(--ring)}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:14px;font-weight:700;border:1px solid var(--ring);box-shadow:var(--shadow)}
+    .btn-primary{background:var(--brand);color:white;border-color:transparent}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .btn-ghost{background:transparent}
+
+    .hamb{display:none}
+    @media (max-width:900px){
+      .menu{display:none}
+      .hamb{display:inline-flex}
+    }
+
+    /* === Hero === */
+    .hero{
+      position:relative;isolation:isolate;overflow:hidden;
+      background:
+        radial-gradient(1000px 500px at 90% -20%, rgba(255,206,0,.25), transparent 60%),
+        radial-gradient(800px 400px at 10% -10%, rgba(0,179,255,.25), transparent 60%),
+        var(--grad);
+      color:#fff;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;z-index:-1;opacity:.2;
+      background-image:url('photo/หน้าวิทลัย1.jpg');
+      background-size:cover;background-position:center;
+      filter:contrast(1.05) saturate(1.05);
+      
+    }
+    .hero-wrap{padding:72px 0 48px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+    @media (max-width:900px){.hero-wrap{grid-template-columns:1fr;padding:48px 0 28px}}
+    .hero h1{font-size:clamp(28px, 5vw, 44px);margin:10px 0 14px}
+    .hero p{font-size:clamp(16px, 2.4vw, 18px);opacity:.95}
+    .hero-card{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);backdrop-filter: blur(8px)}
+
+    /* === Sections === */
+    section{padding:56px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}
+    h2{font-size:clamp(22px, 3.6vw, 32px);margin:0}
+    .kicker{color:var(--brand-2);font-weight:800;letter-spacing:.6px}
+    .muted{color:var(--muted)}
+
+    /* Cards */
+    .cards{display:grid;grid-template-columns:repeat(12, 1fr);gap:18px}
+    .card{grid-column:span 4;background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid var(--ring);box-shadow:var(--shadow)}
+    .card .tag{display:inline-flex;gap:6px;align-items:center;font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(0,59,154,.08);color:var(--brand);font-weight:700}
+    .card h3{margin:10px 0 6px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+    .card .cta{margin-top:12px}
+    .card1{grid-column:span 4;background:var(--card);border-radius:var(--radius);padding:12px;border:0.85em solid var(--ring);box-shadow:var(--shadow)}
+.card.square {
+  aspect-ratio: 1 / 1;       /* ทำให้กว้าง = สูงเสมอ */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;        /* ให้ข้อความจัดกลาง */
+}
+    @media (max-width:1000px){.card{grid-column:span 6}}
+    @media (max-width:640px){.card{grid-column:span 12}}
+
+    /* Feature list */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature{background:var(--card);border:1px solid var(--ring);padding:18px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    @media (max-width:900px){.features{grid-template-columns:1fr}}
+
+    /* Timeline/News */
+    .news{display:grid;gap:16px}
+    .news-item{display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:12px}
+    .news-date{font-weight:800;color:var(--brand)}
+
+    /* Footer */
+    footer{padding:36px 0 80px;background:#0b1221;color:#cfd6ea}
+    footer a{color:#fff}
+    .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px}
+    @media (max-width:900px){.foot-grid{grid-template-columns:1fr}}
+    .copyright{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);color:#9fb0d0;font-size:14px}
+
+    /* Utility */
+    .pill{display:inline-block;background:var(--brand-2);color:#111;padding:6px 10px;border-radius:999px;font-weight:800}
+    .center{text-align:center}
+
+   .social-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.social-box {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px; /* มุมโค้ง */
+  background: rgba(255, 255, 255, 0.08); /* พื้นหลังโปร่ง */
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); /* สำหรับ Safari */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.social-box img {
+  width: 28px;
+  height: 28px;
+}
+
+.social-box:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+
+  </style>
+</head>
+<body>
+  <!-- ====== NAV ====== -->
+  <nav class="nav">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="หน้าแรก">
+  <img class="brand-logo" src="photo/31928.png" alt="โลโก้วิทยาลัย">
+  <div class="brand-title">
+    <span>วิทยาลัยเทคโนโลยี</span>
+    <span>เจริญมิตรพณิชยการ</span>
+  </div>
+</a>
+      <div class="menu" role="navigation" aria-label="เมนูหลัก">
+        <a href="#about">เกี่ยวกับ</a>
+        <a href="#programs">หลักสูตร</a>
+        <a href="#features">จุดเด่น</a>
+        <a href="#news">ข่าวสาร</a>
+        <a href="#admission">สมัครเรียน</a>
+        <a href="#contact" class="btn btn-ghost">ติดต่อ</a>
+        <a href="หน่วยงานที่เกี่ยวข้อง.html">หน่วยงานที่เกี่ยวข้อง</a>
+      </div>
+      <button class="btn hamb" id="hamb" aria-label="เปิดเมนู">☰</button>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <header class="hero" id="top">
+    <div class="container hero-wrap">
+      <div>
+        <span class="pill">CHAROENMIT COMMERCIAL TECHNOLOGICAL COLLEGE</span>
+        <h1> <span style="color:var(--brand-2)">วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ&nbsp;</span> </h1>
+        <p>เปิดสอนหลักสูตรอาชีวศึกษา โดยมุ่งพัฒนาผู้เรียนให้เป็นผู้มีความรู้ด้านวิชาการ ชำนาญวิชาชีพ เทคโนโลยีและมีคุณธรรมจริยธรรม ภูมิทัศน์และบรรยากาศเอื้อต่อการเรียนรู้ มีสื่อการเรียนที่ทันสมัย ครูได้รับการพัฒนาตามมาตรฐานวิชาชีพ และพัฒนาสู่ประชาคมอาเซียน</p>
+        <div style="display:flex;gap:10px;margin-top:16px">
+          <a class="btn btn-primary" href="#admission">สมัครเรียนเลย</a>
+          <a class="btn" href="#programs">ดูหลักสูตร</a>
+        </div>
+        <div class="hero-card" style="margin-top:22px">
+          <strong>อัปเดตล่าสุด:</strong>
+          <ul style="margin:8px 0 0 18px">
+            
+            <li>เพิ่มระบบแนะนำสถานที่ฝึกงาน</li>
+          </ul>
+        </div>
+      </div>
+      <div style="justify-self:end;">
+        <img alt="นางสาวนัตตาภรณ์ โชติรุ่งโรจน์" src="photo/ผอมัค.jpg" style="width:300px;max-width:100%;border-radius:22px; border:1px solid var(--ring);box-shadow:var(--shadow)"/>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== ABOUT ====== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2><span class="kicker">About</span><br/>วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <h3>ปรัชญา</h3>
+          <p class="muted">เรียนดี มีวินัย ใฝ่คุณธรรม นำทักษะ</p>
+        </div>
+        <div class="feature">
+          <h3>วิสัยทัศน์</h3>
+          <p class="muted">วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการเป็นสถาบันการศึกษาที่ผลิตนักเรียนมีคุณภาพ ควบคู่คุณธรรม บุคลากรได้รับการพัฒนาอย่างต่อเนื่อง มุ่งเน้นการบริการวิชาชีพ และการมีส่วนร่วมของชุมชน</p>
+        </div>
+        <div class="feature">
+          <h3>เอกลักษณ์</h3>
+          <p class="muted">มีคุณธรรม นำวิชาชีพ</p>
+        </div>
+         <div class="feature">
+          <h3>อัตลักษณ์</h3>
+          <p class="muted">มีวินัย ใฝ่เรียนรู้ อยู่อย่างพอเพียง</p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PROGRAMS ====== -->
+  <section id="programs">
+    <div class="container">
+      <div class="section-head">
+        <h2><span class="kicker">PROGRAMS</span><br/>หลักสูตรที่เปิดสอน</h2>
+        <a class="btn" href="#admission">ขั้นตอนการสมัคร</a>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="tag" aria-label="สาขา">⚙️เทคโนโลยีธุรกิจดิจิทัล</div>
+          <h3>เทคโนโลยีธุรกิจดิจิทัล</h3>
+          <p>ทักษะดิจิทัล-ธุรกิจ: Web/App, Data, e-Commerce, Digital Marketing</p>
+           
+        </article>
+        <article class="card">
+          <div class="tag">📊 การบัญชี</div>
+          <h3>การบัญชี</h3>
+          <p>ระบบบัญชีด้วยซอฟต์แวร์, ภาษี, วิเคราะห์ต้นทุน และงานเอกสารดิจิทัล</p>
+           
+        </article>
+        <article class="card">
+          <div class="tag">📣 การตลาด</div>
+          <h3>การตลาด</h3>
+          <p>การตลาดดิจิทัล, คอนเทนต์, CRM, โฆษณาออนไลน์ และวิเคราะห์ผู้บริโภค</p>
+           
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FEATURES ====== -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2><span class="kicker">HIGHLIGHTS</span><br/>เหตุผลที่นักเรียนเลือกเรา</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <h3>เชื่อมต่ออุตสาหกรรมจริง</h3>
+          <p class="muted">โครงการสหกิจ พัฒนาทักษะงานจริง</p>
+        </div>
+        <div class="feature">
+          <h3>โครงสร้างพื้นฐานดิจิทัล</h3>
+          <p class="muted">ห้องปฏิบัติการคอมพิวเตอร์ อินเทอร์เน็ตความเร็วสูง และระบบคลาวด์</p>
+        </div>
+        <div class="feature">
+          <h3>ระบบสารสนเทศนักเรียน</h3>
+          <p class="muted">มีระบบเช็คชื่อออนไลน์ แจ้งเตือนอีเมลผู้ปกครอง เมื่อนักเรียน “มาสาย”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== NEWS ====== -->
+  <section id="news">
+    <div class="container">
+      <div class="section-head">
+        <h2><span class="kicker">NEWS</span><br/>ข่าวสาร & กิจกรรม</h2>
+        <a class="btn" href="news.html">ดูทั้งหมด</a>
+      </div>
+      <div class="news">
+        <div class="news-item">
+          <div class="news-date">25 ก.ค. 2568</div>
+          <div>
+            <strong>ประกาศวันสอบกลางภาค</strong>
+            <p class="muted">วันที่ 4-5 ก.ค. 2568 ทำการสอบกลางภาคของนักเรียนชั้น ปวช.1-3</p>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-date">7 ก.ค. 2568</div>
+          <div>
+            <strong>เดินขบวนพาเหรด</strong>
+            <p class="muted">คณะคุณครู และนักเรียน จัดขบวนเดินพาเหรด ณ สนามกีฬาอำเภอฉวาง</p>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-date">16 พ.ค. 2568</div>
+          <div>
+            <strong>วันเปิดภาคเรียนที่ 1 ปีการศึกษา 2568</strong>
+            <p class="muted">วันที่ 16 พฤษภาคม 2586 วันเปิดภาคเรียนที่ 1 ปีการศึกษา 2568</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ADMISSION ====== -->
+  <section id="admission">
+    <div class="container">
+      <div class="section-head">
+        <h2><span class="kicker">ADMISSION</span><br/>การสมัครเรียน</h2>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>ขั้นตอน</h3>
+          
+          <li>สมัครเรียนได้ด้วยตนเองที่วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</li>
+          
+        </article>
+        <article class="card">
+          <h3>คุณสมบัติผู้สมัคร</h3>
+          <li>ผู้จบการศึกษาระดับ ม.3</li>
+        </article>
+        <article class="card">
+          <h3>ทุนการศึกษา</h3>
+          <li>มีเงินอุดหนุน (เรียนฟรี 15ปี)</li>
+          <li>มีกองทุนเงินให้กู้ยืมเพื่อการศึกษา (กยศ.)</li>
+          <li>บุตรข้าราชการ เบิกค่าเล่าเรียนได้</li>
+        </article>
+        <article class="card">
+          <h3>หลักฐานการสมัคร</h3>
+          <li>ใบ ปพ.1 หรือเอกสารรับรองผลการเรียน</li>
+          <li>สำเนาบัตรประจำตัวประชาชน</li>
+          <li>สำเนาทะเบียนบ้านของนักเรียน/ผู้ปกครอง</li>
+          <li>รูปถ่าย 1 นิ้ว 2 รูป</li>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CO-OP ====== -->
+  <section id="co-op">
+    <div class="container">
+      <div class="section-head">
+        <h2><span class="kicker">INTERNSHIP</span><br/>สถานที่ฝึกงาน (ตัวอย่าง)</h2>
+        
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="tag">🏢 สาขาเทคโนโลยีธุรกิจดิจิทัล</div>
+          <h3>Internship about computer</h3>
+          <p>งานข้อมูลดิจิทัล ฯลฯ</p>
+          <div class="cta"><a class="btn" href="it.html">ดูสถานที่ฝึกงาน</a></div>
+        </article>
+        <article class="card">
+          <div class="tag">🏦 สาขาการบัญชี</div>
+          <h3>สำนักงานบัญชี</h3>
+          <p>งานบันทึกบัญชี ภาษี และระบบเอกสารดิจิทัล</p>
+          <div class="cta"><a class="btn" href="account.html">ดูสถานที่ฝึกงาน</a></div>
+        </article>
+        <article class="card">
+          <div class="tag">🛍️ สาขาการตลาด</div>
+          <h3>e-Commerce</h3>
+          <p>คอนเทนต์ โฆษณาออนไลน์ และ CRM</p>
+          <div class="cta"><a class="btn" href="marketing.html">ดูสถานที่ฝึกงาน</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2><span class="kicker">CONTACT</span><br/>ติดต่อเรา</h2>
+      </div>
+      
+<div class="grid" style="grid-template-columns:1.2fr .8fr">
+        <div class="card" id="contactForm"><h3>โซเชียลมีเดีย</h3>
+
+          <div class="social-icons">
+  <a href="https://www.facebook.com/withyalay.thekhnoloyi.ceriy.mitr.phnichykar" target="_blank" class="social-box">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook">
+  </a>
+  <a href="https://www.instagram.com/cctc_68/?__pwa=1" target="_blank" class="social-box">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+  </a>
+  <a href="https://line.me/ti/p/~YourID" target="_blank" class="social-box">
+    <img src="data:image/png;base64,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" alt="Line">
+  </a>
+</div>
+  
+</div>
+      </div>
+
+
+
+      
+
+
+        <div class="card">
+          <h3>ที่อยู่ & ช่องทาง</h3>
+          <p class="muted">วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ<br/>โทร: 075-480-857 | อีเมล: info@charoenmit.ac.th</p>
+          <div style="border-radius:12px;overflow:hidden;border:1px solid var(--ring)">
+            <iframe title="แผนที่" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.3456250601066!2d99.49069737449392!3d8.465731297552669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3053c97a42255ff3%3A0xd174d8976db6da3e!2z4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii4LmA4LiX4LiE4LmC4LiZ4LmC4Lil4Lii4Li14LmA4LiI4Lij4Li04LiN4Lih4Li04LiV4Lij4Lie4LiT4Li04LiK4Lii4Liy4LiB4Liy4Lij!5e0!3m2!1sth!2sth!4v1755346971055!5m2!1sth!2sth" width="100%" height="240" style="border:0"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======ส่วนท้ายจ้าาาา====== -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div class="brand" style="margin-bottom:10px">
+            <img class="brand-logo" src="/photo/31928.png" alt="โลโก้วิทยาลัย">
+          </img>
+            <div class="brand-title">
+              <span>วิทยาลัยเทคโนโลยี</span>
+              <span>เจริญมิตรพณิชยการ</span>
+            </div>
+          </div>
+          <p style="max-width:520px">ก้าวทันเทคโนโลยี สร้างอาชีพยุคใหม่ เชื่อมโยงภาคธุรกิจและชุมชน สู่ความยั่งยืน</p>
+        </div>
+        <div>
+          <strong>ลิงก์ด่วน</strong>
+          <ul>
+            <li><a href="#programs">หลักสูตร</a></li>
+            <li><a href="#admission">สมัครเรียน</a></li>
+            <li><a href="#co-op">สถานที่ฝึกงาน</a></li>
+            <li><a href="#news">ข่าวสาร</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong>ระบบออนไลน์</strong>
+          <ul>
+            <li><a href="#" onclick="alert('กำลังพาไปยัง ระบบเช็คชื่อออนไลน์');">เช็คชื่อออนไลน์</a></li>
+            <li><a href="#" onclick="alert('กำลังพาไปยัง ระบบอีเมลสำหรับผู้ปกครอง');">แจ้งผู้ปกครอง</a></li>
+            <li><a href="#" onclick="alert('กำลังพาไปยัง ระบบสมัครเรียน');">สมัครเรียน</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <div>© <span id="y"></span> CHAROENMIT COMMERCIAL TECHNOLOGICAL COLLEGE</div>
+        
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    // ปีปัจจุบันในลิขสิทธิ์
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // เมนูมือถือ
+    const hamb = document.getElementById('hamb');
+    hamb?.addEventListener('click', () => {
+      const menu = document.querySelector('.menu');
+      if(!menu) return;
+      const opened = menu.style.display === 'flex';
+      menu.style.display = opened ? 'none' : 'flex';
+      menu.style.flexDirection = 'column';
+      menu.style.position = 'absolute';
+      menu.style.top = '64px';
+      menu.style.right = '4%';
+      menu.style.background = getComputedStyle(document.querySelector('.nav')).backgroundColor || 'white';
+      menu.style.padding = '12px';
+      menu.style.border = '1px solid var(--ring)';
+      menu.style.borderRadius = '14px';
+      menu.style.boxShadow = 'var(--shadow)';
+    });
+
+    // ปุ่มเลื่อนไปบนสุด (ตัวอย่างเล็ก ๆ)
+    const toTop = document.createElement('button');
+    toTop.textContent = '▲';
+    toTop.setAttribute('aria-label','กลับขึ้นด้านบน');
+    Object.assign(toTop.style,{
+      position:'fixed',right:'16px',bottom:'16px',padding:'10px 12px',borderRadius:'999px',border:'1px solid var(--ring)',boxShadow:'var(--shadow)',background:'var(--card)',cursor:'pointer'
+    });
+    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    document.body.appendChild(toTop);
+  </script>
+</body>
+</html>
