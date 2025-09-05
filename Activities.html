@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ | Charoenmit Commercial Technology College</title>
+  <meta name="description" content="วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Mali:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.png" />
+  <style>
+    /* === Design Tokens === */
+
+    :root{
+      --brand: #425de4;        /* น้ำเงิน */
+      --brand-2: #FFCE00;      /* เหลือง */
+      --ink: #000;
+      --muted: #5b6476;
+      --bg: url("photo/111.jpg") no-repeat center center fixed;
+      --card: #ffffff;
+      --ring: rgba(0,59,154,.15);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --grad: linear-gradient(135deg, var(--brand) 0%, #0066ff 40%, #00b3ff 100%);
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --ink: #e9edf7;
+        --muted: #a8b0c2;
+        --bg: url("photo/พื้นหลังดำ.jpg") no-repeat center center fixed;
+        --card: #0f172ab3;
+        --ring: rgba(255,255,255,.12);
+        --shadow: 0 10px 30px rgba(0,0,0,.35);
+      }
+    }
+
+    /* === Base === */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Sarabun', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1200px, 92%);margin-inline:auto}
+    .grid{display:grid;gap:24px}
+
+    /* === Nav === */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(255,255,255,.6);
+      border-bottom:1px solid var(--ring);
+    }
+    @media (prefers-color-scheme: dark){
+      .nav{background:rgba(11,18,33,.6)}
+    }
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  object-fit: cover;   /* ทำให้ภาพไม่บิด */
+  box-shadow: var(--shadow);
+}
+
+    .brand-title{display:flex;flex-direction:column;line-height:1}
+    .brand-title span:first-child{font-size:14px;color:var(--muted)}
+    .brand-title span:last-child{font-size:16px}
+
+    .menu{display:flex;gap:14px;align-items:center}
+    .menu a{padding:10px 14px;border-radius:12px;font-weight:600;color:var(--ink)}
+    .menu a:hover{background:var(--ring)}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:14px;font-weight:700;border:1px solid var(--ring);box-shadow:var(--shadow)}
+    .btn-primary{background:var(--brand);color:white;border-color:transparent}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .btn-ghost{background:transparent}
+
+    .hamb{display:none}
+    @media (max-width:900px){
+      .menu{display:none}
+      .hamb{display:inline-flex}
+    }
+
+    /* === Hero === */
+
+
+    .hero{
+      position:relative;isolation:isolate;overflow:hidden;
+      background:
+        radial-gradient(1000px 500px at 90% -20%, rgba(255,206,0,.25), transparent 60%),
+        radial-gradient(800px 400px at 10% -10%, rgba(0,179,255,.25), transparent 60%),
+        var(--grad);
+      color:#fff;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;z-index:-1;opacity:.2;
+      background-image:url('photo/หน้าวิทลัย1.jpg');
+      background-size:cover;background-position:center;
+      filter:contrast(1.05) saturate(1.05);
+      
+    }
+    .hero-wrap {
+  display: flex;
+  justify-content: center;  /* จัดแนวนอนตรงกลาง */
+  align-items: center;      /* จัดแนวตั้งตรงกลาง */
+  padding: 72px 0 48px;
+}
+    @media (max-width:900px){.hero-wrap{grid-template-columns:1fr;padding:48px 0 28px}}
+    .hero h1{font-size:clamp(28px, 5vw, 44px);margin:10px 0 14px}
+    .hero p{font-size:clamp(16px, 2.4vw, 18px);opacity:.95}
+    .hero-card{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);backdrop-filter: blur(8px)}
+
+    /* === Sections === */
+    section{padding:56px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}
+    h2{font-size:clamp(22px, 3.6vw, 32px);margin:0}
+    .kicker{color:var(--brand-2);font-weight:800;letter-spacing:.6px}
+    .muted{color:var(--muted)}
+
+    /* Cards */
+    .cards {
+  display: flex;
+  flex-direction: column; /* เรียงแนวตั้ง */
+  gap: 24px; /* ระยะห่างแต่ละบล็อค */
+}
+
+.card {
+  width: 100%; /* กินเต็มบรรทัด */
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 32px; /* ขยายให้ใหญ่ขึ้น */
+  border: 1px solid var(--ring);
+  box-shadow: var(--shadow);
+  font-size: 18px; /* ตัวอักษรใหญ่ขึ้น */
+}
+.card h3 {
+  font-size: 22px;
+}
+.card ul {
+  font-size: 18px;
+  line-height: 1.7;
+}
+    .card .tag{display:inline-flex;gap:6px;align-items:center;font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(0,59,154,.08);color:var(--brand);font-weight:700}
+    .card h3{margin:10px 0 6px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+    .card .cta{margin-top:12px}
+    .card1{grid-column:span 4;background:var(--card);border-radius:var(--radius);padding:12px;border:0.85em solid var(--ring);box-shadow:var(--shadow)}
+.card.square {
+  aspect-ratio: 1 / 1;       /* ทำให้กว้าง = สูงเสมอ */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;        /* ให้ข้อความจัดกลาง */
+}
+    @media (max-width:1000px){.card{grid-column:span 6}}
+    @media (max-width:640px){.card{grid-column:span 12}}
+
+    /* Feature list */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature{background:var(--card);border:1px solid var(--ring);padding:18px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    @media (max-width:900px){.features{grid-template-columns:1fr}}
+
+    /* Timeline/News */
+    .news{display:grid;gap:16px}
+    .news-item{display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:12px}
+    .news-date{font-weight:800;color:var(--brand)}
+
+    /* Footer */
+    footer{padding:36px 0 80px;background:#0b1221;color:#cfd6ea}
+    footer a{color:#fff}
+    .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px}
+    @media (max-width:900px){.foot-grid{grid-template-columns:1fr}}
+    .copyright{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);color:#9fb0d0;font-size:14px}
+
+    /* Utility */
+    .pill{display:inline-block;background:var(--brand-2);color:#111;padding:6px 10px;border-radius:999px;font-weight:800}
+    .center{text-align:center}
+
+   .social-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.social-box {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px; /* มุมโค้ง */
+  background: rgba(255, 255, 255, 0.08); /* พื้นหลังโปร่ง */
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); /* สำหรับ Safari */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.social-box img {
+  width: 28px;
+  height: 28px;
+}
+
+.social-box:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.cards-horizontal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* แถวละ 3 ใบ */
+  gap: 24px; /* ช่องว่างระหว่างการ์ด */
+  overflow: visible; /* ไม่มี scroll bar */
+}
+
+.card-horizontal {
+  display: flex;
+  flex-direction: column; /* รูปบน ข้อความล่าง */
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  border: 1px solid var(--ring);
+  box-shadow: var(--shadow);
+}
+
+.card-horizontal .card-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 รูปต่อแถว */
+  gap: 8px;
+  margin-bottom: 12px; /* ช่องว่างระหว่างรูปกับข้อความ */
+}
+
+.card-horizontal .card-images img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <!-- ====== NAV ====== -->
+  <nav class="nav">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="หน้าแรก">
+  <img class="brand-logo" src="photo/31928.png" alt="โลโก้วิทยาลัย">
+  <div class="brand-title">
+    <span>วิทยาลัยเทคโนโลยี</span>
+    <span>เจริญมิตรพณิชยการ</span>
+  </div>
+</a>
+      <div class="menu" role="navigation" aria-label="เมนูหลัก">
+        <a href="index.html" class="btn btn-ghost">กลับสู่หน้าหลัก</a>
+        
+      </div>
+      <button class="btn hamb" id="hamb" aria-label="เปิดเมนู">☰</button>
+    </div>
+  </nav>
+
+  <!-- ======หัวข้อจ้าาาา====== -->
+  <header class="hero" id="top">
+    <div class="container hero-wrap">
+      <div>
+        
+        <h1 style="text-align: center; color : yellow;">Activities</h1>
+         <a href="index.html" class="btn btn-ghost">← กลับหน้าหลัก</a>
+
+      </div>
+      
+    </div>
+  </header>
+
+  
+
+  
+  <section id="activities">
+  <div class="container">
+    <div class="section-head">
+      <h2><span class="kicker">Activities</span><br/>กิจกรรมของวิทยาลัย</h2>
+    </div>
+
+    <!-- Scrollable horizontal cards -->
+    <div class="cards-horizontal">
+      <!-- กิจกรรม 1 -->
+      <article class="card-horizontal">
+        <h3>กิจกรรมปลูกป่าชายเลน</h3>
+        <p><strong>วันที่:</strong> 22 สิงหาคม 2568</p>
+        <p><strong>รายละเอียด:</strong> ผู้อำนวยการวิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ มอบหมายให้ตัวแทน คณะครู และนักเรียน เข้าร่วมกิจกรรม ปลูกป่าชายเลน มิตรภาพไทย-ญี่ปุ่น ครั้งที่ 33 </p>
+        <p><strong>สถานที่:</strong> ชุมชนบ้านหน้าทับ หมู่ที่ 7 ตำบลท่าศาลา อำเภอท่าศาลา จังหวัดนครศรีธรรมราช</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/538279426_2956515191184836_5661235996883426273_n.jpg?stp=c185.0.1108.1108a_dst-jpg_s206x206_tt6&_nc_cat=107&ccb=1-7&_nc_sid=50ad20&_nc_ohc=XM1AM2V1n1wQ7kNvwElkBvh&_nc_oc=AdnkmeS3CoNVTDKGWFzaUzoBEhtdtgd4319uU8_eE6Y_5a0sQAR_cSTXPlw72afGadQdPR4_7fX8x4_P6ms_-vqr&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=EOm5JbnIEeMWfRKVLGbNQg&oh=00_AfWjwhdY4HgoP-Yb1bs2Edh5YjaI3y3WEHRTrAJ4XR-KuQ&oe=68B9DAD2" alt="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/538279426_2956515191184836_5661235996883426273_n.jpg?stp=c185.0.1108.1108a_dst-jpg_s206x206_tt6&_nc_cat=107&ccb=1-7&_nc_sid=50ad20&_nc_ohc=XM1AM2V1n1wQ7kNvwElkBvh&_nc_oc=AdnkmeS3CoNVTDKGWFzaUzoBEhtdtgd4319uU8_eE6Y_5a0sQAR_cSTXPlw72afGadQdPR4_7fX8x4_P6ms_-vqr&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=EOm5JbnIEeMWfRKVLGbNQg&oh=00_AfWjwhdY4HgoP-Yb1bs2Edh5YjaI3y3WEHRTrAJ4XR-KuQ&oe=68B9DAD2">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/538080242_2956514347851587_8936173270879719539_n.jpg?stp=c0.106.960.960a_dst-jpg_s206x206_tt6&_nc_cat=110&ccb=1-7&_nc_sid=50ad20&_nc_ohc=bd-gfxIjkd0Q7kNvwEYoGK4&_nc_oc=AdkUR27cggZdd_Py2VD-ltFnzO_y6SFHML3KsRZCEm10aN-sAMMxPQgU3Y-mUPSmSewIrjGIkMZlVm_ezyrRWG8A&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=1OTiwvbiT_ea3OR1Ch5mVw&oh=00_AfW7wv97ZMIx3roPg-bZ9h0sZnYui0USpTP8aBuMAb9dGw&oe=68B9EC0F" alt="วิชาการ2">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/537663751_2956514371184918_1560268271095749139_n.jpg?stp=c0.122.1108.1108a_dst-jpg_s206x206_tt6&_nc_cat=101&ccb=1-7&_nc_sid=50ad20&_nc_ohc=ps9cs5MYClwQ7kNvwGMgGeG&_nc_oc=Admdo1HOlo0-VRz3B7liooC0iruOjWxqttUn4ApWkZN9iL6YeMNqQIP5GNO_IzJLDoYIrpZBZ8fD1Px4cjSAFESY&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=1OTiwvbiT_ea3OR1Ch5mVw&oh=00_AfWfez3DzSRe-XS7IeMhgw4-9rLrNlZGYXslWZglyYZMoA&oe=68B9D00C" alt="วิชาการ3">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/538462598_2956514841184871_5788648885201319275_n.jpg?stp=c0.122.1108.1108a_dst-jpg_s206x206_tt6&_nc_cat=110&ccb=1-7&_nc_sid=50ad20&_nc_ohc=USeZxiq2SNQQ7kNvwGPbYwg&_nc_oc=AdnDfwTjdgWm15-Vbk3xary1WBO2pOb_9aUlN8mbTQ_HHgwAM6Y75ndAFnmC8jtTClEDX61xhJ8GeSSbtkXB0BXw&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=EOm5JbnIEeMWfRKVLGbNQg&oh=00_AfXDXu5gYfdigCZ0O7RWzkSBY-J4DDixjfdh86TCzAv_8A&oe=68B9DFC8" alt="วิชาการ4">
+        </div>
+        <span style = "text-align: center";><a href="https://www.facebook.com/share/p/1PN9XkkUD1/"><u>รูปภาพเพิ่มเติม</u></a></span>
+      </article>
+
+      <!-- Activities 2 -->
+      <article class="card-horizontal">
+        <h3>ลงนามถวายพระพร</h3>
+        <p><strong>วันที่:</strong> 8 สิงหาคม 2568</p>
+        <p><strong>รายละเอียด:</strong>   นางสาวนัตตาภรณ์  โชติรุ่งโรจน์  ผู้อำนวยการวิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ
+พร้อมด้วย คณะผู้บริหาร คณะครู และนักเรียน  เข้าร่วมพิธีลงนามถวายพระพร เนื่องในโอกาส วันเฉลิมพระชนมพรรษา 93  พรรษา สมเด็จพระนางเจ้าสิริกิต์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง</p>
+        <p><strong>สถานที่:</strong> ลานกิจกรรม วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk5-3.fna.fbcdn.net/v/t39.30808-6/528699155_2939793606190328_5832727422389384955_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE3vFJiCR42RC-XBKXm9sCgdKYu8tiCCrR0pi7y2IIKtJdiIFcteCxGiilxdMOyPsUhUlyFa8m2MsOhc5-dhwXb&_nc_ohc=ugvlb6tTfi8Q7kNvwG1yGbr&_nc_oc=AdlaY7Dbw6SdnecKA6R1m8742SAPUghLJpZIuC5agjvu1zb37ZkQPtkArgLAInDO5B8&_nc_zt=23&_nc_ht=scontent.fbkk5-3.fna&_nc_gid=xsTlWKzJlN_2eDIhU7ANMA&oh=00_AfWl2FL_1aMkN2D-IMaRgoqy0M8su8YW2UenCnHo82uD1Q&oe=68BACF8C" alt="-">
+          <img src="https://scontent.fbkk5-6.fna.fbcdn.net/v/t39.30808-6/528712047_2939793622856993_2050936542717752125_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFudER7aVhrONOkyfGt_pfKq47NysjzF2Krjs3KyPMXYkIwgyxFDzjDJUefmBBeO3gYmJXKc7C-lOv4EK0lgI3m&_nc_ohc=sZi7mPiBbUUQ7kNvwFzmGrR&_nc_oc=AdkTH-BUGjkErEbftC62NmXzPs5R9yKXxjMJvPRWltzGq1BzqBMOiecm81B9PuoSwwE&_nc_zt=23&_nc_ht=scontent.fbkk5-6.fna&_nc_gid=9QlXIS6LfY4jwPE_r9AQew&oh=00_AfVbOPYcv8J9IPO5yM_cvsEdtYbOhL5co1LwS9e5Lp7wOA&oe=68BAD770" alt="-">
+          <img src="https://scontent.fbkk5-4.fna.fbcdn.net/v/t39.30808-6/528631496_2939793756190313_5110704817804612579_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH_Wjo2mo1mIye8TfqHneC91HWaZYBka4DUdZplgGRrgEKWChNJ4_lrBmwyPZFcidiIV71owd_t39xj1jTnd3Rq&_nc_ohc=TY50aO3lO8AQ7kNvwHPTDUN&_nc_oc=AdmoeV3-sArIBSSxfQEpnBNy2ya7WPg2vfAoJHwlHfEB-4-ici_1uoL2vHvVmZR4aVw&_nc_zt=23&_nc_ht=scontent.fbkk5-4.fna&_nc_gid=L2f-T4vlhU7hBvT3tzc68Q&oh=00_AfUPaopbE4wXazY85HbGzQun6KYqJmtnlETHguSNON3uyw&oe=68BAD729" alt="-">
+          <img src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t39.30808-6/528572375_2939793249523697_3705259166680374787_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGVmXppt6bav0zC5qODijRNwr45fZb7Os7Cvjl9lvs6zj0FYCIjGQSUT8wY_-22SCntVlD_tMv4nMGj6NdgkNG7&_nc_ohc=OlKy92ADKsgQ7kNvwHtqREU&_nc_oc=AdnHDHSrIvl4EzwTPyoPHdDafipZ9cXKgMGn2D4_56AHgZcVdfGaJDhhAG_nCah_bfg&_nc_zt=23&_nc_ht=scontent.fbkk5-5.fna&_nc_gid=Y7iprdmjAoD3ZOKnGRhD7A&oh=00_AfXHpn2TeCxN8pZRmgPN7hQSjqZqWAXoJYbiivZWzLVVAA&oe=68BADEFC" alt="">
+        </div>
+       <span style = "text-align : center";><a href="https://www.facebook.com/share/19tu7WK1UP/"><u>รูปภาพเพิ่มเติม</u></a></span> 
+      </article>
+
+      <!-- Activities 2 -->
+      <article class="card-horizontal">
+        <h3>กิจกรรมเปิดกองลูกเสือวิสามัญ</h3>
+        <p><strong>วันที่:</strong> 30 กรกฎาคม 2568</p>
+        <p><strong>รายละเอียด:</strong>  นางสาวนัตตาภรณ์  โชติรุ่งโรจน์  ผู้อำนวยการวิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ
+พร้อมด้วย ผู้กำกับลูกเสือ และ ลูกเสือวิสามัญ ร่วมทำกิจกรรมเปิดกองลูกเสือวิสามัญ วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</p>
+        <p><strong>สถานที่:</strong> ลานกิจกรรม วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk5-1.fna.fbcdn.net/v/t39.30808-6/525615075_2930859500417072_1505918139513934102_n.jpg?stp=cp6_dst-jpg_s600x600_tt6&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE5iYRNRckqQ9h26PtI1iCAAKeQ79pQ5MwAp5Dv2lDkzI4JumlqGkMZIJa48WvtRpPAjIMtDmCxoFMcl6JUC7XG&_nc_ohc=j_CgxcGJB5YQ7kNvwGrwdRo&_nc_oc=AdkSb7QZChnZw4pDVFKx1UNCthI0t8ME6JYqRuiqj1Er1tKZTSXKnSpRWHmw8UAQZQg&_nc_zt=23&_nc_ht=scontent.fbkk5-1.fna&_nc_gid=mFtlfzY9NvqJY4ZS3FQhcw&oh=00_AfW_o-PoiXGh44giqYcIP__ryb8obmfyHtaeWs7HZzxRRg&oe=68BACFDC" alt="-">
+          <img src="https://scontent.fbkk5-1.fna.fbcdn.net/v/t39.30808-6/524965485_2930858670417155_9217006166191015604_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHiVEzP-YPyBNCoLq-EUFuQH-yw1lXPo-If7LDWVc-j4nYms8Oa_tj7n4S4S7CejadtBusUZvzNeh8GjiJt92E7&_nc_ohc=2XpGXXSkdGMQ7kNvwHrpZXw&_nc_oc=AdnkeuDX8lqP8AGZsqv_dQLe955-yjOHYWtPh7--WFqKPZMjP3TUKBDHVNrkkE9Ti5o&_nc_zt=23&_nc_ht=scontent.fbkk5-1.fna&_nc_gid=Ch7sW8pKOYEJEdpT18WiGg&oh=00_AfVUxljxnwHkMHBBcRPXfg9xFyGDIpXTDz7AyoubZTlshw&oe=68BB0559" alt="-">
+          <img src="https://scontent.fbkk5-4.fna.fbcdn.net/v/t39.30808-6/525021700_2930858890417133_4101332705433987073_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH1wpllGxawFuaXKFWz9AD_QIwx5R2BdV1AjDHlHYF1XUte4Ba48zeU6-NkYgZjRbAJNyrJGIWkqsHWDJT8vFnj&_nc_ohc=oUrRGb3WsB0Q7kNvwHyEYLa&_nc_oc=AdlhCvG6JJpazR0NlPKdIfjHrVG2Teli7kCx17jqldNabMZ5Mr2REibFi6T3OYWsjzc&_nc_zt=23&_nc_ht=scontent.fbkk5-4.fna&_nc_gid=BDFHN9X-Yr7DEV70yydD6g&oh=00_AfUPpXUJh5AYxLBjQcLz6Z75DFeGNB_w3efdGh2sRlO90Q&oe=68BAF727" alt="-">
+          <img src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t39.30808-6/525411396_2930856750417347_2365804451286467917_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeG9YKudn1BmhTe7ssZ65qdf0wTVYnNWgKjTBNVic1aAqEHphJNTo3NKqfoYkj6c03F3qLOoHwf9bPyUeiWLk2V9&_nc_ohc=TnL6qQL9D7AQ7kNvwGHzytY&_nc_oc=AdkY50fCfTmSchPvkgCZNVuR--YJZetd2h0y9UuaakSXB-W3OIHwdm6zl8mASw5A1-E&_nc_zt=23&_nc_ht=scontent.fbkk5-5.fna&_nc_gid=6fiMIY7TFZVxhkLRYNw2Kw&oh=00_AfV8z2DaLtWSb1vUNh0L0FU6kH1yO6ObZV2XlKOw63oqig&oe=68BAFAA2" alt="">
+        </div>
+        <span style = "text-align : center";><a href="https://www.facebook.com/share/17ERqKfNnF/"><u>รูปภาพเพิ่มเติม</u></a></span>
+      </article>
+
+      <!-- Activities 2 -->
+      <article class="card-horizontal">
+        <h3>ลงนามถวายพระพร</h3>
+        <p><strong>วันที่:</strong> 25 กรกฎาคม 2568</p>
+        <p><strong>รายละเอียด:</strong> นางสาวนัตตาภรณ์  โชติรุ่งโรจน์  ผู้อำนวยการวิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ. พร้อมด้วย คณะผู้บริหาร คณะครู และนักเรียน  เข้าร่วมพิธีลงนามถวายพระพร เนื่องในโอกาสวันเฉลิมพระชนมพรรษา  พระบาทสมเด็จพระปรเมทรรามาธิบดีศรีสินทรมหาวชิราลงกรณ พระวชิรเกล้าเจ้าอยู่หัว</p>
+        <p><strong>สถานที่:</strong> ลานกิจกรรม วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t39.30808-6/522515900_2926043717565317_2710412871175305179_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHOtjV4DyCsEDKH8x4m9nto-Tg1TrRMbpr5ODVOtExummQYEUaEa1mtO_ZGeByhRyxhNxy6DnLh3jTaFEFloxHm&_nc_ohc=NZ4WQ2-XB-IQ7kNvwEGUgbd&_nc_oc=AdlkJDE1c4VoOrSfGmznlhu7jamKLI-7VuW0hYOJP8ZcdMELHuHncsxmLdlR-1ZjO6Y&_nc_zt=23&_nc_ht=scontent.fbkk5-5.fna&_nc_gid=o8GfEHHCGfzkHliq96P1dQ&oh=00_AfXW5FjHHO12FocAvDMAXs3FNQLkmqzCQD1_zS9oakJwQA&oe=68BAFF62" alt="-">
+          <img src="https://scontent.fbkk5-4.fna.fbcdn.net/v/t39.30808-6/523858055_2926043794231976_2365342089686570433_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF_lT4aRIa5DWr1z50-qGfR5QOoCynDG1zlA6gLKcMbXE4emIXB9K9V7UHrVap0OOqlr-Rc9VkeoLUTUmqjZou9&_nc_ohc=lS7mGpfJ6koQ7kNvwE1dSec&_nc_oc=Adn6p8iadNVUqgb2SId1iPfBYVOh4UWmHerNSHkUrsdIoo6-FJDNfSUemZHpctZs8fI&_nc_zt=23&_nc_ht=scontent.fbkk5-4.fna&_nc_gid=sRVg_2CF019Ah-hEKhDweA&oh=00_AfXABf4058B3E_1v_rhuAUCF97VttJfqcdCnPzenIJkuug&oe=68BAE09C" alt="-">
+          <img src="https://scontent.fbkk5-1.fna.fbcdn.net/v/t39.30808-6/520645848_2926043810898641_8079477675030254748_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH6ZQ5cQJ0kFDdXqEyWLoGwyU28KZJqqEfJTbwpkmqoRw58ZBXNJvz1bgKvm0OqlOARCIxzWipm6A6IrtqwUcZp&_nc_ohc=kFPgMENBRkkQ7kNvwE45H9L&_nc_oc=AdlbsNNpKxIaVUnaTlcA1E0m0yTZ3AEpfHb-vJXMVJDm2cu7q5EsV1xIEEZfwozfCOQ&_nc_zt=23&_nc_ht=scontent.fbkk5-1.fna&_nc_gid=xplctWoiGrrAH81acaTPwQ&oh=00_AfUKjNaPhsgYmZD1DJhNwIfmYc0qlRJpijz0FsJWHATGvA&oe=68BB007E" alt="-">
+          <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t39.30808-6/520379295_2926043760898646_7933677983894288715_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF8rTgjIjWqYEDZaKAxsscJ_uQRCBCdr4L-5BEIEJ2vgorff0UctvqhCU1V0su_KPY7VYuxLDscXga57tVWDYKj&_nc_ohc=5VAUpnx0r0oQ7kNvwFqAVez&_nc_oc=Adk_0Zxa5jg0Dk2KBTrbUkwY1p9R1pmLGX-xnl_azXvpzRo3ZC1u3Xzx5-mAXhBqIHg&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&_nc_gid=E_t2BISzBThoOOo_wJMzgg&oh=00_AfV6KaU8Mh_Yz35zQWTrU9nW9xeksMP5pynH9ZUu15VyFg&oe=68BAFE4A" alt="">
+        </div>
+        <span style = "text-align :center";><a href="https://www.facebook.com/share/1JDpsWqouA/"><u>รูปภาพเพิ่มเติม</u></a></span>
+      </article>
+
+      <!-- Activities 2 -->
+      <article class="card-horizontal">
+        <h3>กิจกรรมสวมหมวกนิรภัย 100%</h3>
+        <p><strong>วันที่:</strong> 17 กรกฎาคม 2568</p>
+        <p><strong>รายละเอียด:</strong> นางสาวนัตตาภรณ์ โชติรุ่งโรจน์ ผู้อำนวยการวิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ ให้การต้อนรับเจ้าหน้าที่ตำรวจจาก สถานีตำรวจภูธรไม้เรียง ที่เดินทางมาให้ความรู้กับนักเรียนเกี่ยวกับ "การสวมหมวกนิรภัย 100%" เพื่อสร้างจิตสำนึกด้านความปลอดภัยในการใช้รถจักรยานยนต์อย่างถูกต้องตามกฎหมาย
+ในโอกาสนี้ เจ้าหน้าที่ตำรวจได้ มอบหมวกนิรภัยจำนวน 15 ใบ ให้แก่นักเรียนของวิทยาลัย</p>
+        <p><strong>สถานที่:</strong> วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t39.30808-6/518816654_2919264501576572_2380618202443805801_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFd_qtz2mmOLe8e1vtw7w1kBybHHuqYgXsHJsce6piBezzK9aGeXVc4GxyY4ZTg2Q3Us9tM7YxrkfTsRlANiP9_&_nc_ohc=8sj-ohWQ5zIQ7kNvwE8zmrJ&_nc_oc=AdlDRK1G_ac2q670_OBgJj6ESX7XD05_HanfivU_UVS03UGNlyvAf9ki9bPAa09qSLQ&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&_nc_gid=5Byr09VdqJz_iTYxsViG2Q&oh=00_AfUTO_olKhmOrI8_0tUEBHgmNWkpF2pp3A1ABKeUA5Sn3A&oe=68BAE26E" alt="-">
+          <img src="https://scontent.fbkk5-3.fna.fbcdn.net/v/t39.30808-6/518350703_2919264631576559_9125896285871591577_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH8BXASgVG1xX3AcdoWdeS83-1Efq1vJF7f7UR-rW8kXqcO_-HsM7VkDZUyBcOK3yBBQKDD3cMid0EyqryzStah&_nc_ohc=fEMn4QtiKxUQ7kNvwEXk1I8&_nc_oc=AdkX-JCbX-QC7ZhXhlYNOC18alXzHDnzF6qq1TfQDZC3DazKOueVRaMvG6QthpKhN7E&_nc_zt=23&_nc_ht=scontent.fbkk5-3.fna&_nc_gid=elnWD4AcOKFGSiQCLCAtKQ&oh=00_AfW0xbz12SHVfeYnJmzq23B8vl3QTO3D-OXlaKFRZeNcVw&oe=68BB0851" alt="-">
+          <img src="https://scontent.fbkk5-3.fna.fbcdn.net/v/t39.30808-6/518782680_2919264581576564_1566341365631292259_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGgUTtFisL0ugoNN74oGJp0vn6OKkAerlS-fo4qQB6uVJjOQJvjO6ZbkOjZBQyaHYYHvEo7LJh6_cTGxbQI0SrK&_nc_ohc=S3OIxTpc3JkQ7kNvwE8Sr3w&_nc_oc=Adl1yP_0rIue47BJNXkseQ5s9GGFj2dDB71Lb7t3RkYSCNHnUxHye5_t7HCpQxGJonk&_nc_zt=23&_nc_ht=scontent.fbkk5-3.fna&_nc_gid=g1M0pl6DsA7sMobG-bu4PA&oh=00_AfULYTJRKcvhIRy7hecQjhkrzfRLeVy1LozPBKRK15mn4g&oe=68BAFDE6" alt="-">
+          <img src="https://scontent.fbkk5-4.fna.fbcdn.net/v/t39.30808-6/518423827_2919264664909889_2840871405487147387_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEhqP2P6tnJFe0pLMJF1e4sR9pZmRV9I95H2lmZFX0j3mbUc5bOL3azx1ocq0YM-hGKwmrnB2-zgImT8qHyolMJ&_nc_ohc=UUeFVHcTks8Q7kNvwGIkDeR&_nc_oc=AdnVTaIMKZiHBnZIW3Y1rDgHvZeqo2Vwb_RK02aFzmKhnWdJ1hvaf-9dVnR_jFYD1Oo&_nc_zt=23&_nc_ht=scontent.fbkk5-4.fna&_nc_gid=5v16U6cxvYqyvZzGsJ39jQ&oh=00_AfV34qIfvt-agdpwyzD-67PzKvLXTSQz82K_twEFWSuGxw&oe=68BAF3B3" alt="">
+        </div>
+        <span style = "text-align : center";><a href="https://www.facebook.com/share/p/1C53zv5sb4/"><u>รูปภาพเพิ่มเติม</u></a></span>
+      </article>
+
+      <!-- Activities 2 -->
+      <article class="card-horizontal">
+        <h3>โครงการอบรมคุณธรรม จริยธรรม</h3>
+        <p><strong>วันที่:</strong> 8 กรกฎาคม 2568</p>
+        <p><strong>รายละเอียด:</strong> นางสาวนัตตาภรณ์ โชติรุ่งโรจน์ ผู้อำนวยการ  วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ พร้อมด้วย คณะผู้บริหาร คณะครู และนักเรียน ระดับชั้น ปวช.1 เข้าร่วม โครงการอบรมคุณธรรม จริยธรรม</p>
+        <p><strong>สถานที่:</strong> วัดหาดสูง ต.ไม้เรียง อ.ฉวาง จ.นครศรีธรรมราช</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk5-8.fna.fbcdn.net/v/t39.30808-6/517131717_2909930599176629_3554554698242182917_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGXC8lPoYoCSOmi7zqqXyIuJ1jNWeEgv4knWM1Z4SC_ieZRm9EEXjy-GLakYN7vhk7cRQ6I5sE6FmCSA43UkhZh&_nc_ohc=wgApVAJ0EDQQ7kNvwGWmQi0&_nc_oc=Admk7ckq0YOMCHV6GZqlZU8ChxMRXpO1rGiosBwYR3qlK6HrKQgbIbFyUR3VLwNLb88&_nc_zt=23&_nc_ht=scontent.fbkk5-8.fna&_nc_gid=WWseXDFYNgXDemOAUO3JWA&oh=00_AfUFhSS5CYg4_fYDDgWksKucx6gZQfDMDnSufQ_GwRkCCg&oe=68BAE42F" alt="-">
+          <img src="https://scontent.fbkk5-8.fna.fbcdn.net/v/t39.30808-6/517099242_2909932519176437_3774522502718353050_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHX6xpbgMp87W7EyAttY5qsP4K8ckhgEf0_grxySGAR_QmfukAcB2f3lbIFKOeJ1pGzal5f_EnGhYChNTF2Up-o&_nc_ohc=vYMH6_3J_oQQ7kNvwH2mNiZ&_nc_oc=AdloHUk0dpSRRp-zkrKR-6-J52SKiGBA7HhM80G3V5Zp4IQwyc5z8ArXZ0Wa0q_alkc&_nc_zt=23&_nc_ht=scontent.fbkk5-8.fna&_nc_gid=xJMOKod2um_K41A_2-gG8w&oh=00_AfUqDpO8JCgV8sMDW8wcDhWEBVaslCjFZU9fs6Nex8zkTA&oe=68BADEBC" alt="-">
+          <img src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t39.30808-6/516023055_2909933145843041_4016167210330893807_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE6clO0w0zw1itElVD5x2kclaUIqQQn2f6VpQipBCfZ_glqL8HOJl-oxkSSR2Ly1y1PsKoPbd4uRVeRvqdz2j1O&_nc_ohc=9ZNnCCA9vG8Q7kNvwEeuM0I&_nc_oc=AdnkhS31S-F3UwUXTvQThzgpJ3GTxluRdZnCRYXLFMDef5hC3bAAYkcb69aTyMQnBr4&_nc_zt=23&_nc_ht=scontent.fbkk5-5.fna&_nc_gid=GLQN_A_bym-431p23AbX6Q&oh=00_AfXbJQzdchBSo_V7CYqyeu0oZeKBgKOei0bTzImvnLzbUw&oe=68BAD967" alt="-">
+          <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t39.30808-6/517365606_2909933199176369_8300402382388570529_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE5uusNuST-t-4rvOzqpKo1Fp_O2hh-g0gWn87aGH6DSNhGyNJ9XJW42tdiXTgXSJUIvM5Xx-1eqNa53V1tB5FS&_nc_ohc=Xn43CVCJbZ0Q7kNvwF978lI&_nc_oc=Adl8xS8d7jUt5dWp_j4EcnJ-yTm0wZpvmk9UjNdrBWGfHlqiqhpxaeAuU_R2ZQ1MxAE&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&_nc_gid=018xtILn9gwdr9ZIj-FSYg&oh=00_AfU8I8ocEYQryM5op-jvD3bWS0ttmtXa0kz0ThzuMu-5hA&oe=68BAECB5" alt="">
+        </div>
+        <span style ="text-align : center";><a href="https://www.facebook.com/share/p/19DhySZqaL/"><u>รูปภาพเพิ่มเติม</u></a></span>
+      </article>
+
+      <!-- กิจกรรม 2 -->
+      <article class="card-horizontal">
+        <h3>กิจกรรมเดินพาเหรด</h3>
+        <p><strong>วันที่:</strong> 7 กรกฎาคม 2568</p>
+        <p><strong>รายละเอียด:</strong>นางสาวนัตตาภรณ์ โชติรุ่งโรจน์ ผู้อำนวยการวิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ พร้อมด้วย คณะผู้บริหาร คณะครู และนักเรียน เข้าร่วมกิจกรรม เดินขบวนพาเหรด 
+ในพิธีเปิดการแข่งขันกีฬา “ฉวางเกมส์” ครั้งที่ 24 🏅</p>
+        <p><strong>สถานที่:</strong> สนามกีฬาหน้าอำเภอ อ.ฉวาง จ.นครศรีธรรมราช</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/516776341_2908816649288024_4933260383036604204_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=f727a1&_nc_ohc=Hs-z1esCcvUQ7kNvwGF5f3c&_nc_oc=Adl0EQjwLRdEL0MdCWGMYvzSwJjhhJewLPME1AUPbwxjcCW-9xV4HuZ8YNYRDbXReG0vjrewXvWXqoeGQyZGmBZ9&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=909LFmHh6r7Loky2eTS3Og&oh=00_AfUycOVDsucz8J_66IN1EOmT_LoLjAA3F8szudwO1q4Ibg&oe=68B9FBE6" alt="วิชาการ1">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/518487357_2910578622445160_7928089599805861127_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=f727a1&_nc_ohc=bAQm4k8E49cQ7kNvwHZYli-&_nc_oc=Adm5EJ95pOfm-gXKXSLN463VdaopXDFl6xPusGHAB6FcVOnDgX6UMpcWJ0bAJMvwVTqn96VreIXUXzb014_WLDiz&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=H9crxQ9k-QpO7FOOUxqfBg&oh=00_AfXuKq4-MFfS9lK9G_Pm9eWLQskf2YmLStJqzorQPOezNw&oe=68B9D7BA" alt="วิชาการ2">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/516842098_2910578862445136_82812986747709450_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=BQuzw0zjf54Q7kNvwFLjBu0&_nc_oc=AdnKzQdif5xtkHDGwcXmB311gem7d-APXIUULo8N03c3T0VjME7FrrfC3au5I6wmLN2tmlGXPOm3ub36x6H8DwVR&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=sM--9RlXO903r9a9JBOXfA&oh=00_AfU8ew8YeN4Xxtv2t6No8N104hXQyTvEgVxBSu6UMuvwHA&oe=68B9E115" alt="วิชาการ3">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/517434447_2910578652445157_7324253099519567542_n.jpg?stp=c0.211.1280.1280a_dst-jpg_s206x206_tt6&_nc_cat=100&ccb=1-7&_nc_sid=92e838&_nc_ohc=t0OqZcWmQX4Q7kNvwGsLZDX&_nc_oc=Adku-im85DkmRGCl_dHJe1wsQ7hwYWiC2dUOPUIkxTGjeQpZaLF06_NDViEeufTP2hlG-Zu8xx0nqUhkWsgHw-05&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=SxW9GDvKeNxA_uiJlLO0Nw&oh=00_AfXPceFhjqGXW56pk8nfVE7wqu1k_FNoRTTXrH3FtBNmGw&oe=68B9CFEA" alt="วิชาการ4">
+        </div>
+        <span style = "text-align: center";><a href="https://www.facebook.com/share/p/1Cmqmzqgpj/"><u>รูปภาพเพิ่มเติม</u></a></span>
+      </article>
+
+      <!-- 3 -->
+      <article class="card-horizontal">
+        <h3>กิจกรรมถวายเทียนพรรษา</h3>
+        <p><strong>วันที่:</strong> 9 กรกฎาคม 2568</p>
+        <p><strong>รายละเอียด:</strong> นางสาวนัตตาภรณ์ โชติรุ่งโรจน์ ผู้อำนวยการวิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ พร้อมด้วย คณะผู้บริหาร คณะครู และนักเรียน ร่วมกิจกรรมแห่เทียนพรรษา</p>
+        <p><strong>สถานที่:</strong> วัดหาดสูง ต.ไม้เรียง อ.ฉวาง จ.นครศรีธรรมราช</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/517271575_2910588805777475_1981958052647875910_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=f727a1&_nc_ohc=Tr1UgQPubyEQ7kNvwGJc1TB&_nc_oc=Adn8MwtBno-DtawyrAPdVU8UGQP1PyZ4qwDgGQ0HHLbOth1h_bruVyiJ9A3hx7TP3QLeX48QLaOrYJD1iT4n0dJ6&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=lcIcwzA08TlcchaiB6piww&oh=00_AfUN1pv3QbG5tbxKccZznlh5tS_UYHXVIM7FfxAD_1mo8Q&oe=68B9D4D2" alt="ต้นไม้1">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/517587124_2910590625777293_3242206324193916048_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=f727a1&_nc_ohc=0uTsO0Y4BuMQ7kNvwGvSsFY&_nc_oc=Adlks0fjFI8fXY3jt8XoZbTi8q3oE0gi90iY9u9MbirCGd1l5EfGNOrov0E_fWr-MGAeEkV9N2UBSfIZUCOqrLeY&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=uHvBDnPVG-nXicE-fOXjHA&oh=00_AfVkv7eaAUg7JYUzithbW6DdLT7AxmtiyzcauUMW5h8W3A&oe=68B9EA4D" alt="ต้นไม้2">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/516790213_2910590955777260_4090586862619467772_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=f727a1&_nc_ohc=GWR7caLOe_EQ7kNvwGME84O&_nc_oc=AdlMuvWAsD3w4VVw1gO3GiMn6Njlv9JhmR2EL1xreNvWZdLH4kHunbS2ik4Cfed9Qxv3iEjjokcqUXV0RbVyS6u1&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=t2ASLvUeMdbqe6FNjZkcoQ&oh=00_AfVlNemdkQnM_dGZ316JftiD8fFbumHZji7Me4BC1umyvA&oe=68B9FBE3" alt="ต้นไม้3">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/517136351_2910591185777237_6487263134572876398_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_ohc=zeevIhqjz7IQ7kNvwFbWtLr&_nc_oc=Adm3ecudbREIKi5TYwFctgWGxXtwsqEtNeIzJB4HwOEc2NelYlh1-PnpcW8H-S8kQXyrPtfXMWWczXkYMDj_s8BY&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=1LXkzRfyN-YiIK5b1SR3QQ&oh=00_AfWYHbC1BGLsPqVPlcWxcEoJfTNCaxJnd5NQhHQm9aVplg&oe=68B9D54D" alt="ต้นไม้4">
+        </div>
+        <span style = "text-align: center";><a href="https://www.facebook.com/share/p/1CUipfgaSp/"><u>รูปภาพเพิ่มเติม</u></a>
+      </article>
+
+      <!-- กิจกรรม 4 -->
+      <article class="card-horizontal">
+        <h3>กิจกรรมวันไหว้ครู ปีการศึกษา 2568</h3>
+        <p><strong>วันที่:</strong> 19 มิถุนายน 2568</p>
+        <p><strong>รายละเอียด:</strong>   นางสาวนัตตาภรณ์  โชติรุ่งโรจน์  ผู้อำนวยการวิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ พร้อมด้วย คณะผู้บริหาร คณะครู และนักเรียน  เข้าร่วมพิธีไหว้ครู  ประจำปีการศึกษา 2568 </p>
+        <p><strong>สถานที่:</strong> ลานกิจกรรม วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/510525240_2891939590975730_6092041470989153417_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=lpswbzYBTw0Q7kNvwGvlt7-&_nc_oc=AdnTYRZPWtp_aIKZI9w-KJYzofIJg_fCtVA6KoL8BgIJgCY4n8jnYpvpMhRXQ_vFTzsi_VAzTRZxBblL43Y55PEO&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=3APa9b-V6H-nXW-qllYH-A&oh=00_AfWZQPIt6KrgBUywhx1V0DwaAawkeQqDNmdKnVwzMySdQg&oe=68B9F5AB" alt="-">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/509362480_2891937980975891_2847135371214282247_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=H26VjSnHWuoQ7kNvwGi7UKE&_nc_oc=Adkg-DrHNCOpHukycOKLyUKrx-sU2DaNgzq8hV602X1cwgwNoPvklXpPGx4-KBa7d9AE2rRjH0Kt9hCIzS79FO1b&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=UJjSMp8JjeEupKeeAWKdmQ&oh=00_AfWc_0DRI5I0ymW4f847k-E-8DoRBbZRUyDVYO_CN07jBQ&oe=68BA034E" alt="-">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/509289669_2891940097642346_6874540122904316555_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4dUSC2buZ9gQ7kNvwGOLZLk&_nc_oc=AdnIZKS9sOUWPbkS9SfXxmOpB4s89QnG6XuwMHIbVSqGPTWRbdx-dPnj2ryuz80rsN-36enE4jW-TGWbRQ4dAG8F&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=pbxQnm6tdRXwYys-kDXkxg&oh=00_AfV--OJJqmxaNzHm4vXuNOS59tjy0GzabqZsFIY_3-sy8Q&oe=68BA2773" alt="-">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/509290561_2891940130975676_965930556101719997_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=IIq0WWX6z-4Q7kNvwGPAubA&_nc_oc=AdlTLMKkS2cNubvGdGRh8rO7fzKXeSWJGRUMlH7rgBykHljoab7NDMtp1ggHgl-_vEFbTBS1eFFjNMFGcos1xODL&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=9Xz8tRnTI78Z78NaBkjlVA&oh=00_AfWnWjfjovCg5t7oAt7wF7SsCZk7VJer2ZdrshRXpbcWOw&oe=68BA070A" alt="">
+        </div>
+        <span style = "text-align : center";><a href="https://www.facebook.com/share/p/171eZKtuTg/"><u>รูปภาพเพิ่มเติม</u></a></span>
+      </article>
+
+      
+      <article class="card-horizontal">
+        <h3>ลงนามถวายพระพร</h3>
+        <p><strong>วันที่:</strong> 30 พฤษภาคม 2568</p>
+        <p><strong>รายละเอียด:</strong>  นางสาวนัตตาภรณ์ โชติรุ่งโรจน์ ผู้อำนวยการ วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ    พร้อมด้วย คณะผู้บริหาร คณะครู และนักเรียน เข้าร่วมพิธีลงนามถวายพระพร เนื่องในโอกาสวันเฉลิมพระชนมพรรษา สมเด็จพระนางเจ้าสุทิดา พัชรสุธาพิมลลักษณ พระบรมราชินี</p>
+        <p><strong>สถานที่:</strong> ลานกิจกรรม วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/514597988_2900040923498930_3832629605117628184_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=7rmQ6aCrVzMQ7kNvwGmfxhy&_nc_oc=AdnVj5bVAW79hiHXCDWtP7ezdcbBAnhwQ4taW4wivWP94muTLKCw666t4EO9LMV7TrC0uD77RYo12G8ex7v9jJqN&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=dUO9ZVb7MkTl7pmi94jDxA&oh=00_AfXauZF2OkRfod7fudT99mBTgS6spUo0Fo8A1XWwVAOBOA&oe=68B9F7E1" alt="-">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/513695095_2900042686832087_3218146731035694984_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=bn_LV7T-H8gQ7kNvwE6jjtV&_nc_oc=AdmpjT6fbw_rCcg-2uDRZQZds20YI26Tugxa7r3IUcMLZc5bj8EdzYtWT0HuTwyY1tCCbCaZ439NDOvTlGLOMH2T&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=JuCD5DVDFAaqpy6PuGMVlw&oh=00_AfX5WD1jvS6qtyrk50t9f8XrGssODoNWi5wyU4z6yUFO7g&oe=68BA0CAE" alt="-">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/511278530_2900041743498848_5567915731406348757_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-Ju1xMYsUfMQ7kNvwGVqnXR&_nc_oc=Adl06_iIeIUtf9t_rXIqOGIzl_rIKGBVluXpEdqd1yD2r39WueQqEuZBKCOsr7Y95RABYXRCanQVX52QeBLFJMhY&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=M463yy5JvI-9j2MrhN82jw&oh=00_AfXdN1TyeY6QEijFb_vGEsb9WwyneVa9ixpkC9OhV8Fy_A&oe=68BA2322" alt="-">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/514447870_2900041590165530_61303360048005062_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=sBK-KN-eyyIQ7kNvwFF-lGI&_nc_oc=Admned2kyAHxE1L2NXfFDbCA9esTo1_mLJflOzZNaHHESESN0IARr7raMy-jcRtGgfBcNuf5fqMJoz8TVEgsWYX8&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=eITjcWwIIwPGUPMbk4umYQ&oh=00_AfUN857ZMUxUp5CyX00hUuycgrMNcsxVQUgCbBbnrZGOsA&oe=68BA2471" alt="-">
+        </div>
+        <span style = "text-align: center";><a href ="https://www.facebook.com/share/1RHKcdSRbJ/"><u>รูปภาพเพิ่มเติม</u></a></span>
+      </article>
+
+      
+      <article class="card-horizontal">
+        <h3>กิจกรรมรับน้อง</h3>
+        <p><strong>วันที่:</strong> 16 พฤษภาคม 2568</p>
+        <p><strong>รายละเอียด:</strong>  นางสาวนัตตาภรณ์ โชติรุ่งโรจน์ ผู้อำนวยการวิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ พร้อมด้วยคณะผู้บริหาร คณะครู และนักเรียน ร่วมกิจกรรม ไหว้พระภูมิประจำวิทยาลัย เพื่อความเป็นสิริมงคล และพิธี รับขวัญน้องใหม่ ต้อนรับนักเรียนใหม่อย่างอบอุ่น</p>
+        <p><strong>สถานที่:</strong> ลานกิจกรรม วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</p>
+
+        <div class="card-images">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/506529213_2886248024878220_3760402509653175962_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=1kFeOaXScCsQ7kNvwFkDhvy&_nc_oc=Adlur1drDlpjOvBAF8i3kDmlGX09uykGIzrLSsdRCtXc5fqytnzq0Jnom2RUojpINFkn_HVkl4lXnASTNuL66qZf&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=Z42rcA9hXNQq19IiA0FK6g&oh=00_AfUwzo1P17okl4Isca9ixdj7YJ86yB6W-14CrIPHFPPu7w&oe=68BA2C46" alt="-">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/506991335_2886245378211818_6836576507275424913_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=VMdjYxrxaikQ7kNvwHq_rWg&_nc_oc=Adn98B-CGSOIjPXIzY09gscxzRuLdNbSjV_5qgducffY_Gti0ikezY9h1vSExl4gxYPCYkFA3HKATwyTIHY1l2bG&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=suF0tkY3a7IBm3p-oUrB9w&oh=00_AfVnvNHcjrfe0cWa2QckcJ4T0hYW3fVXpOGuflcIQhkuDg&oe=68BA00F8" alt="-">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/505711685_2886248511544838_7625412596884153170_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=f4ByON9M2hcQ7kNvwFm5bHY&_nc_oc=AdkCfsynVq5BojqiDscP131MYUvkRl68eZzdZcHqDoMy8kUhqMftJBMlKK2jpS9XCHR3rksqKk42k_CwgogByHJz&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=IWS90yMTHfY8MeV9TmwPYQ&oh=00_AfVaapGSlymS08xv9tF1g0XY8PCx5X8CVOu3GdZFF0jlwQ&oe=68BA0492" alt="-">
+          <img src="https://scontent.fbkk25-1.fna.fbcdn.net/v/t39.30808-6/506307697_2886244118211944_235273363135458288_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=7m0j4avUrNcQ7kNvwHUaU4S&_nc_oc=AdkaCHTGUqLcGjAM-JcQvHfnDbtZKRPvy37TLTjegEHO52JuvvitEKlcnUlW0XYBNaVqN0Rq9l7eEd5ggqQaoIf0&_nc_zt=23&_nc_ht=scontent.fbkk25-1.fna&_nc_gid=qDZVeHtMTuPAKnOyFQ8bSA&oh=00_AfVz6zeYUwPeyr12pAhHe7EYNFnpNOGX4aWpif4yueuHIg&oe=68BA01B9" alt="">
+        </div>
+        <span style = "text-align : center";><a href="https://www.facebook.com/share/p/17ZkwuFJLQ/"><u>รูปภาพเพิ่มเติม</u></a></span>
+
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+  
+
+
+  
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    // ปีปัจจุบันในลิขสิทธิ์
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // เมนูมือถือ
+    const hamb = document.getElementById('hamb');
+    hamb?.addEventListener('click', () => {
+      const menu = document.querySelector('.menu');
+      if(!menu) return;
+      const opened = menu.style.display === 'flex';
+      menu.style.display = opened ? 'none' : 'flex';
+      menu.style.flexDirection = 'column';
+      menu.style.position = 'absolute';
+      menu.style.top = '64px';
+      menu.style.right = '4%';
+      menu.style.background = getComputedStyle(document.querySelector('.nav')).backgroundColor || 'white';
+      menu.style.padding = '12px';
+      menu.style.border = '1px solid var(--ring)';
+      menu.style.borderRadius = '14px';
+      menu.style.boxShadow = 'var(--shadow)';
+    });
+
+    // ปุ่มเลื่อนไปบนสุด (ตัวอย่างเล็ก ๆ)
+    const toTop = document.createElement('button');
+    toTop.textContent = '▲';
+    toTop.setAttribute('aria-label','กลับขึ้นด้านบน');
+    Object.assign(toTop.style,{
+      position:'fixed',right:'16px',bottom:'16px',padding:'10px 12px',borderRadius:'999px',border:'1px solid var(--ring)',boxShadow:'var(--shadow)',background:'var(--card)',cursor:'pointer'
+    });
+    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    document.body.appendChild(toTop);
+  </script>
+</body>
+</html>

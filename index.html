@@ -12,6 +12,50 @@
   <style>
     /* === Design Tokens === */
 
+    /* ปุ่มสลับโหมด */
+#theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--brand-2);
+  color: #111;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  z-index: 999;
+}
+#theme-toggle:hover {
+  background: var(--brand);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* โหมดสว่าง */
+body.light-mode {
+  --ink: #000;
+  --muted: #5b6476;
+  --bg: url("photo/111.jpg") no-repeat center center fixed;
+  --card: #ffffff;
+  --ring: rgba(0,59,154,.15);
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+/* โหมดมืด */
+body.dark-mode {
+  --ink: #e9edf7;
+  --muted: #a8b0c2;
+  --bg: url("photo/พื้นหลังดำ.jpg") no-repeat center center fixed;
+  --card: #0f172ab3;
+  --ring: rgba(255,255,255,.12);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+
     :root{
       --brand: #7058ea;        /* น้ำเงิน */
       --brand-2: #FFCE00;      /* เหลือง */
@@ -204,12 +248,16 @@
   </div>
 </a>
       <div class="menu" role="navigation" aria-label="เมนูหลัก">
-        <a href="#about">เกี่ยวกับ</a>
-        <a href="#programs">หลักสูตร</a>
-        <a href="#features">จุดเด่น</a>
+       <button id="theme-toggle">🌙 โหมดมืด</button>
+
+        <a href="#programs">สาขาวิชา</a>
+        <a href="Activities.html">กิจกรรม</a>
         <a href="#news">ข่าวสาร</a>
-        <a href="#admission">สมัครเรียน</a>
+        <a href="#features">จุดเด่น</a>
+        <a href="personel.html">บุคลากร</a>
+        <a href="AWT.html">ทีม อวท.</a>
         <a href="#contact" class="btn btn-ghost">ติดต่อ</a>
+        <a href="#about">เกี่ยวกับ</a>
         <a href="หน่วยงานที่เกี่ยวข้อง.html">หน่วยงานที่เกี่ยวข้อง</a>
       </div>
       <button class="btn hamb" id="hamb" aria-label="เปิดเมนู">☰</button>
@@ -282,18 +330,21 @@
           <div class="tag" aria-label="สาขา">⚙️เทคโนโลยีธุรกิจดิจิทัล</div>
           <h3>เทคโนโลยีธุรกิจดิจิทัล</h3>
           <p>ทักษะดิจิทัล-ธุรกิจ: Web/App, Data, e-Commerce, Digital Marketing</p>
+          <div class="cta"><a class="btn" href="aboutIT.html">รายละเอียด</a></div>
            
         </article>
         <article class="card">
           <div class="tag">📊 การบัญชี</div>
           <h3>การบัญชี</h3>
           <p>ระบบบัญชีด้วยซอฟต์แวร์, ภาษี, วิเคราะห์ต้นทุน และงานเอกสารดิจิทัล</p>
+          <div class="cta"><a class="btn" href="aboutAccount.html">รายละเอียด</a></div>
            
         </article>
         <article class="card">
           <div class="tag">📣 การตลาด</div>
           <h3>การตลาด</h3>
           <p>การตลาดดิจิทัล, คอนเทนต์, CRM, โฆษณาออนไลน์ และวิเคราะห์ผู้บริโภค</p>
+          <div class="cta"><a class="btn" href="aboutMarketing.html">รายละเอียด</a></div>
            
         </article>
       </div>
@@ -331,6 +382,13 @@
         <a class="btn" href="news.html">ดูทั้งหมด</a>
       </div>
       <div class="news">
+        <div class="news-item">
+          <div class="news-date">4 ก.ย. 2568</div>
+          <div>
+            <strong>เลือกตั้งคณะกรรมการทีม อวท. ประจำปีการศึกษา 2569</strong>
+            <p class="muted">วันที่ 4 ก.ย. 2568 นักเรียนชั้น ปวช.1-ปวช.3 ทำกิจกรรมเลือกตั้งคณะกรรมการทีม อวท. ประจำปีการศึกษา 2569 ณ ห้องประชุมชั้น ปวช.3</p>
+          </div>
+        </div>
         <div class="news-item">
           <div class="news-date">25 ก.ค. 2568</div>
           <div>
@@ -467,7 +525,7 @@
       <div class="foot-grid">
         <div>
           <div class="brand" style="margin-bottom:10px">
-            <img class="brand-logo" src="/photo/31928.png" alt="โลโก้วิทยาลัย">
+            <img class="brand-logo" src="photo/31928.png" alt="โลโก้วิทยาลัย">
           </img>
             <div class="brand-title">
               <span>วิทยาลัยเทคโนโลยี</span>
@@ -533,6 +591,32 @@
     });
     toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     document.body.appendChild(toTop);
+    
+  const toggleBtn = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // โหลดครั้งแรก -> ใช้โหมดที่เคยเลือก (localStorage)
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    toggleBtn.textContent = "🌞 โหมดสว่าง";
+  } else {
+    body.classList.add("light-mode");
+    toggleBtn.textContent = "🌙 โหมดมืด";
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    if (body.classList.contains("light-mode")) {
+      body.classList.replace("light-mode", "dark-mode");
+      toggleBtn.textContent = "🌞 โหมดสว่าง";
+      localStorage.setItem("theme", "dark");
+    } else {
+      body.classList.replace("dark-mode", "light-mode");
+      toggleBtn.textContent = "🌙 โหมดมืด";
+      localStorage.setItem("theme", "light");
+    }
+  });
+
+
   </script>
 </body>
 </html>
