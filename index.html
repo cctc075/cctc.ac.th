@@ -14,25 +14,32 @@
 
     /* ปุ่มสลับโหมด */
 #theme-toggle {
-  position: fixed;
-  bottom: 20px;
+  position: fixed; /* ปรับตำแหน่งได้ */
+  top: 2px;       /* ตัวอย่าง: อยู่มุมบนขวา */
   right: 20px;
-  background: var(--brand-2);
-  color: #111;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px; /* สี่เหลี่ยมมีมุมโค้ง */
   border: none;
-  border-radius: 25px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  box-shadow: var(--shadow);
-  transition: background 0.3s, color 0.3s, transform 0.2s;
-  z-index: 999;
-}
-#theme-toggle:hover {
-  background: var(--brand);
+  background: linear-gradient(135deg, #FFCE00, #7058EA);
   color: #fff;
-  transform: scale(1.05);
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  transition: all 0.4s ease;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+}
+
+#theme-toggle .icon {
+  display: inline-block;
+  transition: transform 0.4s ease;
 }
 
 /* โหมดสว่าง */
@@ -47,7 +54,7 @@ body.light-mode {
 
 /* โหมดมืด */
 body.dark-mode {
-  --ink: #e9edf7;
+  --ink: #ffffff;
   --muted: #a8b0c2;
   --bg: url("photo/พื้นหลังดำ.jpg") no-repeat center center fixed;
   --card: #0f172ab3;
@@ -164,7 +171,7 @@ body.dark-mode {
 
     /* Cards */
     .cards{display:grid;grid-template-columns:repeat(12, 1fr);gap:18px}
-    .card{grid-column:span 4;background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid var(--ring);box-shadow:var(--shadow)}
+    .card{grid-column:span 4;background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid var(--ring);box-shadow:var(--shadow); margin-bottom: 18px;}
     .card .tag{display:inline-flex;gap:6px;align-items:center;font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(0,59,154,.08);color:var(--brand);font-weight:700}
     .card h3{margin:10px 0 6px;font-size:18px}
     .card p{margin:0;color:var(--muted)}
@@ -204,7 +211,7 @@ body.dark-mode {
 
    .social-icons {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
   margin-top: 1rem;
 }
@@ -221,6 +228,7 @@ body.dark-mode {
   -webkit-backdrop-filter: blur(10px); /* สำหรับ Safari */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.25s ease, background 0.25s ease;
+  
 }
 
 .social-box img {
@@ -248,7 +256,9 @@ body.dark-mode {
   </div>
 </a>
       <div class="menu" role="navigation" aria-label="เมนูหลัก">
-       <button id="theme-toggle">🌙 โหมดมืด</button>
+      <button id="theme-toggle" aria-label="สลับโหมด">
+  <span class="icon">🌙</span>
+</button>
 
         <a href="#programs">สาขาวิชา</a>
         <a href="Activities.html">กิจกรรม</a>
@@ -359,16 +369,32 @@ body.dark-mode {
       </div>
       <div class="features">
         <div class="feature">
-          <h3>เชื่อมต่ออุตสาหกรรมจริง</h3>
-          <p class="muted">โครงการสหกิจ พัฒนาทักษะงานจริง</p>
+          <h3>คุณภาพการเรียนการสอน</h3>
+          <p class="muted">มีคณาจารย์ผู้เชี่ยวชาญ ดูแลใกล้ชิด ถ่ายทอดความรู้พร้อมประสบการณ์จริง</p>
         </div>
         <div class="feature">
           <h3>โครงสร้างพื้นฐานดิจิทัล</h3>
-          <p class="muted">ห้องปฏิบัติการคอมพิวเตอร์ อินเทอร์เน็ตความเร็วสูง และระบบคลาวด์</p>
+          <p class="muted">ห้องปฏิบัติการคอมพิวเตอร์ อินเทอร์เน็ตความเร็วสูง</p>
         </div>
         <div class="feature">
-          <h3>ระบบสารสนเทศนักเรียน</h3>
-          <p class="muted">มีระบบเช็คชื่อออนไลน์ แจ้งเตือนอีเมลผู้ปกครอง เมื่อนักเรียน “มาสาย”</p>
+          <h3>หลักสูตรทันสมัย</h3>
+          <p class="muted">เนื้อหาสอดคล้องกับโลกอาชีพปัจจุบัน และพัฒนาทักษะที่จำเป็นต่ออนาคต</p>
+        </div>
+        <div class="feature">
+          <h3>โอกาสฝึกประสบการณ์จริง</h3>
+          <p class="muted">มีเครือข่ายสถานประกอบการรองรับนักเรียนในการฝึกงานและทำงานต่อเนื่อง</p>
+        </div>
+        <div class="feature">
+          <h3>กิจกรรมเสริมทักษะครบวงจร</h3>
+          <p class="muted">ทั้ง Soft skill และ Hard Skill เพื่อเตรียมพร้อมสู่การทำงานจริง</p>
+        </div>
+        <div class="feature">
+          <h3>เส้นทางสู่อาชีพ</h3>
+          <p class="muted">ผู้สำเร็จการศึกษามีโอกาสทำงานได้หลากหลายสาขา หรือศึกษาได้อย่างมั่นใจ</p>
+        </div>
+        <div class="feature">
+          <h3>ความเอาใจใส่รายบุคคล</h3>
+          <p class="muted">ใส่ใจดูแลนักเรียนทุกคน ทั้งด้านวิชาการและการใช้ชีวิต</p>
         </div>
       </div>
     </div>
@@ -593,28 +619,30 @@ body.dark-mode {
     document.body.appendChild(toTop);
     
   const toggleBtn = document.getElementById("theme-toggle");
-  const body = document.body;
+const body = document.body;
 
-  // โหลดครั้งแรก -> ใช้โหมดที่เคยเลือก (localStorage)
-  if (localStorage.getItem("theme") === "dark") {
-    body.classList.add("dark-mode");
-    toggleBtn.textContent = "🌞 โหมดสว่าง";
-  } else {
-    body.classList.add("light-mode");
-    toggleBtn.textContent = "🌙 โหมดมืด";
+// โหลดธีมเก่าจาก localStorage
+if(localStorage.getItem("theme") === "dark"){
+  body.classList.add("dark-mode");
+  toggleBtn.querySelector(".icon").textContent = "🌞";
+}else{
+  body.classList.add("light-mode");
+  toggleBtn.querySelector(".icon").textContent = "🌙";
+}
+
+// เปลี่ยนธีม
+toggleBtn.addEventListener("click", () => {
+  const icon = toggleBtn.querySelector(".icon");
+  if(body.classList.contains("light-mode")){
+    body.classList.replace("light-mode","dark-mode");
+    icon.textContent = "🌞";
+    localStorage.setItem("theme","dark");
+  }else{
+    body.classList.replace("dark-mode","light-mode");
+    icon.textContent = "🌙";
+    localStorage.setItem("theme","light");
   }
-
-  toggleBtn.addEventListener("click", () => {
-    if (body.classList.contains("light-mode")) {
-      body.classList.replace("light-mode", "dark-mode");
-      toggleBtn.textContent = "🌞 โหมดสว่าง";
-      localStorage.setItem("theme", "dark");
-    } else {
-      body.classList.replace("dark-mode", "light-mode");
-      toggleBtn.textContent = "🌙 โหมดมืด";
-      localStorage.setItem("theme", "light");
-    }
-  });
+});
 
 
   </script>
