@@ -1,286 +1,223 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>สถานที่ฝึกงาน - บัญชี</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun&family=Mali&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../photo/โลโก้.png" />
+  <title>วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ | Charoenmit Commercial Technology College</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Mali:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.png" />
   <style>
-    * {
-      box-sizing: border-box;
+     :root{
+      --brand: #425de4;        /* น้ำเงิน */
+      --brand-2: #FFCE00;      /* เหลือง */
+      --ink: #000;
+      --muted: #5b6476;
+      --bg: url("photo/ขาว.png") no-repeat center center fixed;
+      --card: #ffffff;
+      --ring: rgba(0,59,154,.15);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --grad: linear-gradient(135deg, var(--brand) 0%, #0066ff 40%, #00b3ff 100%);
     }
 
-   body {
-  margin: 0;
-  font-family: 'Sarabun', sans-serif;
-  color: #003366;
-
-  /* ใช้ภาพพื้นหลังแทนสี */
-  background: url('photo/แบ็คกราวด์.png') no-repeat center center fixed;
-  background-size: cover;
-}
-
-     .animated-header {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 60px 40px;
-      color: rgb(0, 50, 255);
-      overflow: hidden;
-      flex-wrap: wrap;
-    }
-
-    .animated-header::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-     
-      background-size: cover;
-      background-position: center;
-      filter: blur(20px);
-      opacity: 1;
-      z-index: -1;
-    }
-
-    .animated-header img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 2px solid rgb(255, 255, 255);
-    }
-
-    .header-text h1 {
-      margin: 0;
-      font-size: 2em;
-      font-weight: bold;
-    }
-
-    .header-text p {
-      margin-top: 5px;
-      font-size: 1em;
-      font-family: 'Mali', sans-serif;
-    }
-
-    nav {
-      background: linear-gradient(90deg, #004aad, #001c44);
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 0;
-      margin: 0 20px 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      font-weight: 600;
-    }
-
-    nav a {
-      color: white;
-      padding: 14px 22px;
-      text-decoration: none;
-      font-size: 1rem;
-      margin: 6px 8px;
-      border-radius: 6px;
-      position: relative;
-      transition: 0.3s ease;
-    }
-
-    nav a:hover {
-      background-color: #ffd600;
-      color: #001c44;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 3px;
-      bottom: 0;
-      left: 0;
-      background-color: #ffd600;
-      transition: width 0.3s ease;
-      border-radius: 3px;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 0 auto 60px;
-      background: white;
-      padding: 40px 30px;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    }
-
-    main h2 {
-      text-align: center;
-      font-size: 2rem;
-      color: #004aad;
-      margin-bottom: 30px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin: 20px 0;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .card img {
-      width: 200px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .card-content {
-      flex: 1;
-    }
-
-    .card-content h3 {
-      margin-top: 0;
-      color: #222;
-    }
-
-    .card-content p {
-      margin: 5px 0;
-      font-size: 1rem;
-    }
-
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .back-link a {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 16px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-
-    .back-link a:hover {
-      background-color: #388e3c;
-    }
-
-    footer {
-      background-color: #002f6c;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-    }
-
-    @media (max-width: 768px) {
-      .animated-header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      main {
-        margin: 0 15px;
-        padding: 30px 20px;
-      }
-
-      .card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .card img {
-        width: 100%;
-        max-width: 300px;
+    @media (prefers-color-scheme: dark){
+      :root{
+        --ink: #e9edf7;
+        --muted: #a8b0c2;
+        --bg: url("photo/พื้นหลังดำ.jpg") no-repeat center center fixed;
+        --card: #0f172ab3;
+        --ring: rgba(255,255,255,.12);
+        --shadow: 0 10px 30px rgba(0,0,0,.35);
       }
     }
+
+
+    /* Base */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Sarabun', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1200px, 92%);margin-inline:auto}
+    .grid{display:grid;gap:24px}
+
+    /* Nav */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(255,255,255,.6);
+      border-bottom:1px solid var(--ring);
+    }
+    @media (prefers-color-scheme: dark){ .nav{background:rgba(11,18,33,.6)} }
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand-logo{width:40px;height:40px;border-radius:12px;object-fit:cover;box-shadow:var(--shadow);}
+    .brand-title{display:flex;flex-direction:column;line-height:1}
+    .brand-title span:first-child{font-size:14px;color:var(--muted)}
+    .brand-title span:last-child{font-size:16px}
+    .menu{display:flex;gap:14px;align-items:center}
+    .menu a{padding:10px 14px;border-radius:12px;font-weight:600;color:var(--ink)}
+    .menu a:hover{background:var(--ring)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:14px;font-weight:700;border:1px solid var(--ring);box-shadow:var(--shadow)}
+    .btn-primary{background:var(--brand);color:white;border-color:transparent}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .btn-ghost{background:transparent}
+    .hamb{display:none}
+    @media (max-width:900px){
+      .menu{display:none}
+      .hamb{display:inline-flex}
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;isolation:isolate;overflow:hidden;
+      background:
+        radial-gradient(1000px 500px at 90% -20%, rgba(255,206,0,.25), transparent 60%),
+        radial-gradient(800px 400px at 10% -10%, rgba(0,179,255,.25), transparent 60%),
+        var(--grad);
+      color:#fff;
+      height:60vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      flex-direction:column;
+      gap:20px;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;z-index:-1;opacity:.2;
+      background-image:url('photo/หน้าวิทลัย1.jpg');
+      background-size:cover;background-position:center;
+      filter:contrast(1.05) saturate(1.05);
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;background:rgba(0,0,0,0.3);z-index:0;
+    }
+    .hero h1{font-size:clamp(28px, 5vw, 44px);margin:0;z-index:1;}
+    .hero a.btn{z-index:1;}
+
+    /* Sections */
+    section{padding:56px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}
+    h2{font-size:clamp(22px,3.6vw,32px);margin:0}
+    .kicker{color:var(--brand-2);font-weight:800;letter-spacing:.6px}
+    .muted{color:var(--muted)}
+
+    /* Cards */
+    .container-cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+      gap:24px;
+    }
+    .card.square{
+      background:var(--card);
+      border-radius:var(--radius);
+      border:1px solid var(--ring);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card.square:hover{
+      transform:translateY(-6px);
+      box-shadow:0 12px 30px rgba(0,0,0,0.2);
+    }
+    .card.square img{width:100%;height:180px;object-fit:cover;}
+    .card-content{padding:16px;display:flex;flex-direction:column;flex-grow:1}
+    .card-content h3{margin:0 0 8px 0;font-size:1.2rem;color:var(--brand);}
+    .card-content p{margin:4px 0;font-size:0.95rem;color:var(--muted);line-height:1.4;}
+    .card-content a{color:var(--brand-2);text-decoration:underline;transition:color 0.2s;}
+    .card-content a:hover{color:var(--brand);}
   </style>
 </head>
 <body>
-
-  <!-- Header -->
-  <header class="animated-header">
-    <img src="photo/31928.png" alt="โลโก้โรงเรียน" />
-    <div class="header-text">
-      <h1>วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ</h1>
-      <p>CHAROENMIT COMMERCIAL TECHNOLOGICAL COLLEGE</p>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+      <a class="brand" href="#top" aria-label="หน้าแรก">
+        <img class="brand-logo" src="photo/31928.png" alt="โลโก้วิทยาลัย">
+        <div class="brand-title">
+          <span style ="color : blue;">วิทยาลัยเทคโนโลยี</span>
+          <span style ="color : blue;">เจริญมิตรพณิชยการ</span>
+        </div>
+      </a>
+      <div class="menu" role="navigation" aria-label="เมนูหลัก">
+        <a href="index.html" class="btn btn-ghost">กลับสู่หน้าหลัก</a>
+      </div>
+      <button class="btn hamb" id="hamb" aria-label="เปิดเมนู">☰</button>
     </div>
-  </header>
-
-  <!-- Navigation -->
-  <nav>
-    <a href="แนะนำสถานที่ฝึกงาน.html" style="background-color:#ffd600; color:#001c44;">แนะนำสถานที่ฝึกงาน</a>
-    
   </nav>
 
-  <!-- Main -->
-  <main>
-    <h2>สถานที่ฝึกงานสำหรับสาขาบัญชี</h2>
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <h1 style="text-align: center; color : yellow;">แนะนำสถานที่ฝึกงานสาขาการบัญชี</h1>
+    <a href="index.html" class="btn btn-ghost">← กลับหน้าหลัก</a>
+  </header>
 
-    <div class="card">
-    <img src="รูป/ไปรษณีย์ทานพอ.jpg" alt="ไปรษณีย์ไทยสาขาทานพอ">
-    <div class="card-content">
-      <h3>ไปรษณีย์ไทยสาขาทานพอ</h3>
-      <p><strong>ที่ตั้ง:</strong>214/1-2 ม.3 ต.ไม้เรียง อ.ฉวาง จ.นครศรีธรรมราช 80260</p>
-      <p><strong>เบอร์โทร :</strong>0-7548-1265</p>
-      <p><strong>รายละเอียด:</strong> การจัดพัสดุ ใช้เครื่องใช้สำนักงาน ฯลฯ</p>
-	  <p><strong>แผนที่ :</strong><a href = "https://maps.app.goo.gl/iWRF3KDhQJThLghk7">คลิกเพื่อดูแผนที่</a></p>
-    </div>
+  <!-- INTERNSHIP CARDS -->
+  <section id="internship">
+    <div class="container">
+      <div class="section-head">
+        <h2><span class="kicker">INTERNSHIP</span><br/>แนะนำสถานที่ฝึกงาน - สาขาการบัญชี</h2>
+      </div>
+
+      <div class="container-cards">
+  <div class="card square">
+  <img src="รูป/กรุงไทยฉวาง.webp" alt="ธนาคารกรุงไทย สาาขาฉวาง">
+  <div class="card-content">
+    <h3>ธนาคารกรุงไทย สาขาฉวาง</h3>
+    <p><strong>ที่ตั้ง:</strong> เลขที่ 320 หมู่ที่ 2 ชนประเวศ ต.ฉวาง, ฉวาง, นครศรีธรรมราช 80150</p>
+    <p><strong>เบอร์โทร:</strong>  075 481 272</p>
+    <p><strong>รายละเอียด:</strong> งานบริการลูกค้า จัดการเอกสารทางการเงิน ฯลฯ</p>
+    <p><strong>แผนที่:</strong> <a href="https://maps.app.goo.gl/P1hyeuhQyJK3zfBj7">คลิกเพื่อดูแผนที่</a></p>
   </div>
+</div>
 
-   <div class="card">
-    <img src="รูป/ไปรษณีย์ฉวาง.jpg" alt="ไปรษณีย์ไทยสาขาฉวาง">
-    <div class="card-content">
-      <h3>ไปรษณีย์ไทยสาขาฉวาง</h3>
-      <p><strong>ที่ตั้ง:</strong>2/5 ม.1 ต.ฉวาง อ.ฉวาง จ.นครศรีธรรมราช 80150</p>
-      <p><strong>เบอร์โทร :</strong> 0-7548-1124</p>
-      <p><strong>รายละเอียด:</strong> การจัดพัสดุ ใช้เครื่องใช้สำนักงาน ฯลฯ</p>
-	  <p><strong>แผนที่ :</strong><a href = "https://maps.app.goo.gl/T1HiGU9rrZFtEMxS7">คลิกเพื่อดูแผนที่</a></p>
-    </div>
+<div class="card square">
+  <img src="รูป/ธกสฉวาง.png" alt="ธนาคาร ธกส. สาขาฉวาง">
+  <div class="card-content">
+    <h3>ธนาคาร ธกส. สาขาฉวาง</h3>
+    <p><strong>ที่ตั้ง:</strong> 281/5-7 หมู่ 6  ตำบลไสหร้า อำเภอฉวาง จังหวัดนครศรีธรรมราช 80150</p>
+    <p><strong>เบอร์โทร:</strong> 077-362-056</p>
+    <p><strong>รายละเอียด:</strong> จัดการเอกสารทางการเงิน บริการลูกค้า ฯลฯ</p>
+    <p><strong>แผนที่:</strong> <a href="https://maps.app.goo.gl/oJz73ZGK2a8pqzbP7">คลิกเพื่อดูแผนที่</a></p>
   </div>
+</div>
 
-  <div class="card">
-    <img src="รูป/การไฟฟ้าฉวาง.jpg" alt="การไฟฟ้าส่วนภูมิภาคอำเภอฉวาง">
-    <div class="card-content">
-      <h3>การไฟฟ้าส่วนภูมิภาคอำเภอฉวาง</h3>
-      <p><strong>ที่ตั้ง:</strong>266 ม.6 ต.ไสหร้า อ.ฉวาง จ.นครศรีธรรมราช 80150</p>
-      <p><strong>เบอร์โทร :</strong> 0-7548-1165</p>
-      <p><strong>รายละเอียด:</strong> บริการลูกค้า งานเอกสาร ใช้โปรแกรมสำนักงาน ใช้เครื่องใช้สำนักงาน ฯลฯ</p>
-	  <p><strong>แผนที่ :</strong><a href = "https://maps.app.goo.gl/fSNNB5oJrCq4aTsh8">คลิกเพื่อดูแผนที่</a></p>
+
+
+</div>
+
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
-    <img src="รูป/สถานีตำรวจไม้เรียง.jpg" alt="สถานีตำรวจภูธรไม้เรียง">
-    <div class="card-content">
-      <h3>สถานีตำรวจภูธรไม้เรียง</h3>
-      <p><strong>ที่ตั้ง:</strong> เลขที่ 8 หมู่ที่ 8 ต.ไม้เรียง อ.ฉวาง จ.นครศรีธรรมราช 80260</p>
-      <p><strong>เบอร์โทร:</strong> 078-48091 </p>
-      <p><strong>รายละเอียด:</strong> การลงบันทึกคดีประจำวัน การลงคดี การใช้เครื่องใช้สำนักงาน การใช้โปรแกรมสำนักงาน ฯลฯ</p>
-	  <p><strong>แผนที่ :</strong><a href = "https://maps.app.goo.gl/3K2KKnkf2fvkJFv26">คบิกเพื่อดูแผนที่</a></p>
-    </div>
-  </div>
-
-    <div class="back-link">
-      <a href="index.html">⬅ ย้อนกลับไปหน้าเลือกสาขา</a>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    © 2025 วิทยาลัยเทคโนโลยีเจริญมิตรพณิชยการ | พัฒนาโดยแผนกคอมพิวเตอร์ธุรกิจ
-  </footer>
-
+  <script>
+    // เมนูมือถือ
+    const hamb = document.getElementById('hamb');
+    hamb?.addEventListener('click', () => {
+      const menu = document.querySelector('.menu');
+      if(!menu) return;
+      const opened = menu.style.display === 'flex';
+      menu.style.display = opened ? 'none' : 'flex';
+      menu.style.flexDirection = 'column';
+      menu.style.position = 'absolute';
+      menu.style.top = '64px';
+      menu.style.right = '4%';
+      menu.style.background = getComputedStyle(document.querySelector('.nav')).backgroundColor || 'white';
+      menu.style.padding = '12px';
+      menu.style.border = '1px solid var(--ring)';
+      menu.style.borderRadius = '14px';
+      menu.style.boxShadow = 'var(--shadow)';
+    });
+  </script>
 </body>
 </html>

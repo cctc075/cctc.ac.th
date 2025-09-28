@@ -46,7 +46,7 @@
 body.light-mode {
   --ink: #000;
   --muted: #5b6476;
-  --bg: url("photo/111.jpg") no-repeat center center fixed;
+  --bg: url("photo/ขาว.png") no-repeat center center fixed;
   --card: #ffffff;
   --ring: rgba(0,59,154,.15);
   --shadow: 0 10px 30px rgba(0,0,0,.08);
@@ -251,8 +251,8 @@ body.dark-mode {
       <a class="brand" href="#top" aria-label="หน้าแรก">
   <img class="brand-logo" src="photo/31928.png" alt="โลโก้วิทยาลัย">
   <div class="brand-title">
-    <span>วิทยาลัยเทคโนโลยี</span>
-    <span>เจริญมิตรพณิชยการ</span>
+    <span style ="color : blue;">วิทยาลัยเทคโนโลยี</span>
+    <span style ="color : blue;">เจริญมิตรพณิชยการ</span>
   </div>
 </a>
       <div class="menu" role="navigation" aria-label="เมนูหลัก">
@@ -266,7 +266,7 @@ body.dark-mode {
         <a href="#features">จุดเด่น</a>
         <a href="personel.html">บุคลากร</a>
         <a href="AWT.html">ทีม อวท.</a>
-        <a href="#contact" class="btn btn-ghost">ติดต่อ</a>
+        <a href="#contact">ติดต่อ</a>
         <a href="#about">เกี่ยวกับ</a>
         <a href="หน่วยงานที่เกี่ยวข้อง.html">หน่วยงานที่เกี่ยวข้อง</a>
       </div>
@@ -408,6 +408,15 @@ body.dark-mode {
         <a class="btn" href="news.html">ดูทั้งหมด</a>
       </div>
       <div class="news">
+
+        <div class="news-item">
+          <div class="news-date">20 ก.ย. 2568</div>
+          <div>
+            <strong>วันสอบปลายภาคเรียนที่1 ปีการศึกษา 2568</strong>
+            <p class="muted">วันที่ 25-26 กันยายน 2586 จะทำการสอบวัดผลประเมินผลปลายภาคเรียนที่1 นักเรียนชั้น ปวช.1-ปวช.3 ปีการศึกษา 2568</p>
+          </div>
+        </div>
+
         <div class="news-item">
           <div class="news-date">4 ก.ย. 2568</div>
           <div>
@@ -415,6 +424,7 @@ body.dark-mode {
             <p class="muted">วันที่ 4 ก.ย. 2568 นักเรียนชั้น ปวช.1-ปวช.3 ทำกิจกรรมเลือกตั้งคณะกรรมการทีม อวท. ประจำปีการศึกษา 2569 ณ ห้องประชุมชั้น ปวช.3</p>
           </div>
         </div>
+
         <div class="news-item">
           <div class="news-date">25 ก.ค. 2568</div>
           <div>
@@ -422,6 +432,7 @@ body.dark-mode {
             <p class="muted">วันที่ 4-5 ก.ค. 2568 ทำการสอบกลางภาคของนักเรียนชั้น ปวช.1-3</p>
           </div>
         </div>
+
         <div class="news-item">
           <div class="news-date">7 ก.ค. 2568</div>
           <div>
@@ -429,13 +440,7 @@ body.dark-mode {
             <p class="muted">คณะคุณครู และนักเรียน จัดขบวนเดินพาเหรด ณ สนามกีฬาอำเภอฉวาง</p>
           </div>
         </div>
-        <div class="news-item">
-          <div class="news-date">16 พ.ค. 2568</div>
-          <div>
-            <strong>วันเปิดภาคเรียนที่ 1 ปีการศึกษา 2568</strong>
-            <p class="muted">วันที่ 16 พฤษภาคม 2586 วันเปิดภาคเรียนที่ 1 ปีการศึกษา 2568</p>
-          </div>
-        </div>
+        
       </div>
     </div>
   </section>
@@ -521,9 +526,7 @@ body.dark-mode {
   <a href="https://www.instagram.com/cctc_68/?__pwa=1" target="_blank" class="social-box">
     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
   </a>
-  <a href="https://line.me/ti/p/~YourID" target="_blank" class="social-box">
-    <img src="data:image/png;base64,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" alt="Line">
-  </a>
+  
 </div>
   
 </div>
@@ -569,14 +572,7 @@ body.dark-mode {
             <li><a href="#news">ข่าวสาร</a></li>
           </ul>
         </div>
-        <div>
-          <strong>ระบบออนไลน์</strong>
-          <ul>
-            <li><a href="#" onclick="alert('กำลังพาไปยัง ระบบเช็คชื่อออนไลน์');">เช็คชื่อออนไลน์</a></li>
-            <li><a href="#" onclick="alert('กำลังพาไปยัง ระบบอีเมลสำหรับผู้ปกครอง');">แจ้งผู้ปกครอง</a></li>
-            <li><a href="#" onclick="alert('กำลังพาไปยัง ระบบสมัครเรียน');">สมัครเรียน</a></li>
-          </ul>
-        </div>
+        
       </div>
       <div class="copyright">
         <div>© <span id="y"></span> CHAROENMIT COMMERCIAL TECHNOLOGICAL COLLEGE</div>
