@@ -297,6 +297,76 @@ body.dark-mode {
   right: 15px;
 }
 
+/* ===== POPUP OVERLAY ===== */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.4s ease, visibility 0.4s;
+      z-index: 9999;
+    }
+
+    /* แสดงป๊อปอัพ */
+    .popup.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* กล่องโปสเตอร์ */
+    .popup-content {
+      position: relative;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 90%;
+      width: auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      animation: zoomIn 0.5s ease;
+    }
+
+    .popup-content img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff4d4d;
+      border: none;
+      color: white;
+      font-size: 22px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .close-btn:hover {
+      background: #e60000;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
 
 
 
@@ -347,6 +417,15 @@ body.dark-mode {
   <button class="prev">&#10094;</button>
   <button class="next">&#10095;</button>
 </div>
+
+
+<!-- ป๊อปอัพโปสเตอร์ -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <img src="photo/ไว้อาลัย1.jpg" alt="โปสเตอร์กิจกรรม" />
+      <button id="closeBtn" class="close-btn">&times;</button>
+    </div>
+  </div>
 
 
   <!-- ====== HERO ====== -->
@@ -732,6 +811,26 @@ document.querySelector('.prev').addEventListener('click', () => {
   index = (index - 1 + total) % total;
   slides.style.transform = `translateX(-${index * 100}%)`;
 });
+
+ window.onload = function() {
+      const popup = document.getElementById('popup');
+      const closeBtn = document.getElementById('closeBtn');
+
+      // เด้งขึ้นทุกครั้งที่เข้าเว็บ
+      popup.classList.add('show');
+
+      // ปุ่มปิด
+      closeBtn.addEventListener('click', () => {
+        popup.classList.remove('show');
+      });
+
+      // คลิกนอกกรอบให้ปิด
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+          popup.classList.remove('show');
+        }
+      });
+    };
 
 
 
